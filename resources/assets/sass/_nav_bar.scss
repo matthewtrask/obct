@@ -1,0 +1,20 @@
+nav.top-bar,
+nav.top-bar section.top-bar-section ul.left li a,
+nav.top-bar section.top-bar-section ul.right li a,
+nav.top-bar section.top-bar-section ul.right li.has-dropdown ul.dropdown li a,
+nav.top-bar ul.title-area li.name h1,
+nav.top-bar ul.title-area li.name h1 a,
+nav.top-bar ul.title-area li.toggle-topbar.menu-icon a,
+nav.top-bar ul.title-area li.toggle-topbar.menu-icon a span{
+  background-color: #5d5d5d;
+  color: #fff;
+}
+
+nav.top-bar section.top-bar-section ul.left li a:hover,
+nav.top-bar section.top-bar-section ul.right li a:hover,
+nav.top-bar section.top-bar-section ul.right li.has-dropdown ul.dropdown li a:hover,
+nav.top-bar ul.title-area li.name h1 a:hover,
+.top-bar.expanded .toggle-topbar a span::after  {
+  background-color: #fff;
+  color: #5d5d5d;
+}

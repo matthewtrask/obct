@@ -1,0 +1,48 @@
+#footerSM {
+  ul {
+    li {
+      list-style: none;
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+}
+
+  #footerSM {
+    li:first-child {
+      margin-left: -35px;
+    }
+  }
+
+  #footerSM {
+    li {
+      a {
+        color: #5d5d5d;
+      }
+    }
+  }
+
+    #footerEmail {
+      a {
+        color: #5d5d5d;
+        :hover {
+          color: #2ecc71;
+        }
+      }
+    }
+
+    footer {
+      .fa-youtube-square:hover {
+          color: $youtube;
+      }
+      .fa-facebook-official:hover {
+        color: $facebook;
+      }
+      .fa-twitter-square:hover {
+        color: $twitter;
+      }
+      .fa-wordpress:hover {
+        color: $wordpress;
+      }
+    }
+

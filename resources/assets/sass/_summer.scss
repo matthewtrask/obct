@@ -1,0 +1,19 @@
+div#overflow {
+  height: 250px;
+  overflow: scroll;
+}
+
+dl.sub-nav {
+  border: 1px solid $gray;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+div#register {
+  button.button.register.expand {
+    background-color: $twitter;
+    a {
+      color: #fff;
+    }
+  }
+}

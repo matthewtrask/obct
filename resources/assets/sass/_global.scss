@@ -1,0 +1,36 @@
+$gray: #5d5d5d;
+$yellow: #D1FF47;
+$red: #ff6047;
+$purple: #ff47d1;
+$green: #47ffa3;
+$facebook:#3b6998;
+$twitter:#4099ff;
+$wordpress:#21759b;
+$youtube:#e52d27;
+$message: #7547ff;
+$darkGreen: #43AC6A;
+
+h1, h2, h3, h4, h5, h6, a {
+  font-family: 'Lato', sans-serif;
+}
+
+p, span, li {
+  font-family: 'Merriweather', serif;
+}
+
+div#sidebar {
+  div.panel {
+    button.button.success {
+      background-color: $darkGreen;
+      a {
+        color: #fff !important;
+        }
+      }
+    }
+    button.button.message {
+      background-color: $message;
+      a {
+        color: #fff !important;
+    }
+  }
+}

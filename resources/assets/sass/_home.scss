@@ -1,0 +1,44 @@
+div#main {
+  margin-top: 5%;
+}
+
+div.logo {
+  margin-bottom: 5%;
+}
+
+div#mission {
+  margin-top: 5%;
+}
+
+div#sidebar {
+  button.button.show {
+    background-color: $youtube;
+    margin-top: 5%;
+    a {
+      color: #fff;
+    }
+  }
+}
+
+div#whatsNew {
+  height: 300px;
+  overflow: scroll;
+  button.button.whatsnew {
+      background-color: $red !important;
+    a {
+      color: #fff !important;
+    }
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  ul.title-area {
+    li.name {
+      a {
+        h1 {
+          padding-left: 30%;
+        }
+      }
+    }
+  }
+}
