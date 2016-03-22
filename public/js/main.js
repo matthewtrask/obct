@@ -25,4 +25,6 @@ $(document).ready(function(){
             $('.back-to-top').fadeOut(duration);
         }
     });
+
+
 });

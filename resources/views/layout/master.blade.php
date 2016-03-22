@@ -25,16 +25,16 @@
     <meta name="theme-color" content="#ffffff">
 
     <!-- CSS -->
-    <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='//fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-    <link href="../resources/assets/bower_components/foundation/css/foundation.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/foundation/6.2.0/foundation.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
 
     <link href="css/app.css" rel="stylesheet">
-    <script src="../resources/assets/bower_components/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
 
 </head>
 <body>
@@ -49,10 +49,10 @@
     }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fixed" style="margin-bottom: 40px;">
+<div class="fixed">
     <nav class="top-bar" data-topbar role="navigation">
         <ul class="title-area">
-            <li class="name" style="margin-left: 2%">
+            <li class="name">
                 <a href="/"><h1>OBCT</h1></a>
             </li>
             <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
@@ -62,20 +62,20 @@
         <section class="top-bar-section">
             <!-- Right Nav Section -->
             <ul class="right">
-                <li ><a href="about">About Us</a></li>
+                <li ><a href="/about">About Us</a></li>
                 <li class="has-dropdown">
                     <a href="#">Studio</a>
                     <ul class="dropdown">
-                        <li><a href="classes">Classes</a></li>
-                        <li><a href="teachers">Teachers</a></li>
+                        <li><a href="/classes">Classes</a></li>
+                        <li><a href="/teachers">Teachers</a></li>
                     </ul>
                 </li>
-                <li><a href="summer">Summer</a></li>
+                <li><a href="/summer">Summer</a></li>
                 <li class="has-dropdown">
                     <a href="#">Shows</a>
                     <ul class="dropdown">
-                        <li><a href="schools">Schools</a></li>
-                        <li><a href="currentshow">Current Show</a></li>
+                        <li><a href="/schools">Schools</a></li>
+                        <li><a href="/currentshow">Current Show</a></li>
                         <li><a href="auditions">Auditions</a></li>
                         <li><a href="questions">Questions</a></li>
                     </ul>
@@ -87,7 +87,7 @@
                         <li><a href="juniortroupe">Junior Troupe</a></li>
                     </ul>
                 </li>
-                <li><a href='contact'>Contact</a></li>
+                <li><a href='/contact'>Contact</a></li>
             </ul>
         </section>
     </nav>
@@ -149,13 +149,7 @@
     </div>
 </footer>
 
-<script src="../resources/assets/bower_components/foundation/js/foundation.js"></script>
-<script src="../resources/assets/bower_components/foundation/js/foundation/foundation.dropdown.js"></script>
-<script src="../resources/assets/bower_components/foundation/js/foundation/foundation.topbar.js"></script>
-<script src="../resources/assets/bower_components/foundation/js/foundation/foundation.alert.js"></script>
-<script src="../resources/assets/bower_components/foundation/js/foundation/foundation.abide.js"></script>
-<script src="../resources/assets/bower_components/foundation/js/foundation/foundation.reveal.js"></script>
-<script src="../resources/assets/bower_components/foundation/js/foundation/foundation.accordion.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/foundation/6.2.0/foundation.min.js"></script>
 <script src="js/main.js"></script>
 
 </body>

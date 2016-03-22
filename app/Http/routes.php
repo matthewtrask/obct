@@ -18,8 +18,12 @@ Route::get('/classes', 'Obct\ClassesController@classes');
 Route::get('/teachers', 'Obct\TeacherController@teachers');
 Route::get('/summer', 'Obct\SummerController@summer');
 Route::get('/schools', 'Obct\SchoolController@schools');
+Route::get('/currentshow', 'Obct\CurrentShowController@currentShow');
+Route::get('/faq', 'Obct\FaqController@faq');
+Route::get('/contact', 'Obct\ContactController@contact');
 
-// Admin pages
+Route::post('/contact', 'Obct\ContactController@postContact');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -33,4 +37,11 @@ Route::get('/schools', 'Obct\SchoolController@schools');
 
 Route::group(['middleware' => ['web']], function () {
     //
+});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/admin', 'Admin\AdminController@index');
+    route::get('/admin/about', 'Admin\AboutController@index');
 });

@@ -25,6 +25,9 @@ nav.top-bar ul.title-area li.toggle-topbar.menu-icon a span {
   background-color: #5d5d5d;
   color: #fff; }
 
+nav.top-bar {
+  padding-top: 0; }
+
 nav.top-bar section.top-bar-section ul.left li a:hover,
 nav.top-bar section.top-bar-section ul.right li a:hover,
 nav.top-bar section.top-bar-section ul.right li.has-dropdown ul.dropdown li a:hover,
@@ -49,7 +52,7 @@ div#sidebar button.button.show {
     color: #fff; }
 
 div#whatsNew {
-  height: 300px;
+  height: 400px;
   overflow: scroll; }
   div#whatsNew button.button.whatsnew {
     background-color: #ff6047 !important; }
@@ -60,7 +63,6 @@ div#whatsNew {
   ul.title-area li.name a h1 {
     padding-left: 30%; } }
 
-@impont "_about.scss";
 div#classDetails button.button.register {
   background-color: #ff6047; }
   div#classDetails button.button.register a {
