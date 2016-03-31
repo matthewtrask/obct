@@ -1,7 +1,7 @@
-/**
- * Created by mtrask on 3/12/16.
- */
 $(document).ready(function(){
+
+    $(document).foundation();
+
     // Main Page Slider
     $('.image').slick({
         dots: false,

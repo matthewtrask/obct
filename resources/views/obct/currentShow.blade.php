@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h2>Current Show</h2>
+    <h2>Current Show</h2><hr>
 
     @foreach($currentShow as $show)
         <div class="panel">
@@ -31,11 +31,14 @@
     <div class="row">
         @foreach($upcoming as $soon)
             <div class="small-6 columns">
-                <div class="panel">
+                <div class="panel" id="upcoming">
                     <h4>{{ $soon->show_title }}</h4>
                     <p>Dates: {{$soon->dates}}</p>
                     <p>Price: ${{$soon->ticket_price}}</p>
-                    <img src="data:image/jpg;base64,{{$soon->show_image}}">
+                    <img height="300px" src="data:image/jpg;base64,{{$soon->show_image}}"><br>
+                    <div class="panel">
+                        {{ isset($soon->link) ? $soon->link : 'Tickets Available Soon!' }}
+                    </div>
                 </div>
             </div>
         @endforeach

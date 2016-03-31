@@ -86,6 +86,11 @@ div#register button.button.register.expand {
   div#register button.button.register.expand a {
     color: #fff; }
 
+div#upcoming {
+  min-height: 375px; }
+  div#upcoming img {
+    height: 300px; }
+
 #footerSM ul li {
   list-style: none;
   display: inline-block;

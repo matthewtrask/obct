@@ -10,7 +10,7 @@
     @endforeach
 
 
-    <dl class="sub-nav">
+    <dl class="panel">
         <dt>Select:</dt>
         <dd><a href="#1">Elf Jr.</a></dd>
         <dd><a href="#2">Aladdin Kids</a></dd>

@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
 
     <link href="css/app.css" rel="stylesheet">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
 
 </head>
@@ -53,7 +53,7 @@
     <nav class="top-bar" data-topbar role="navigation">
         <ul class="title-area">
             <li class="name">
-                <a href="/"><h1>OBCT</h1></a>
+                <a href="{{ url('/') }}"><h1>OBCT</h1></a>
             </li>
             <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
             <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -62,32 +62,32 @@
         <section class="top-bar-section">
             <!-- Right Nav Section -->
             <ul class="right">
-                <li ><a href="/about">About Us</a></li>
+                <li ><a href="{{ url('/about') }}">About Us</a></li>
                 <li class="has-dropdown">
                     <a href="#">Studio</a>
                     <ul class="dropdown">
-                        <li><a href="/classes">Classes</a></li>
-                        <li><a href="/teachers">Teachers</a></li>
+                        <li><a href="{{ url('/classes') }}">Classes</a></li>
+                        <li><a href="{{ url('/teachers') }}">Teachers</a></li>
                     </ul>
                 </li>
-                <li><a href="/summer">Summer</a></li>
+                <li><a href="{{ url('/summer') }}">Summer</a></li>
                 <li class="has-dropdown">
                     <a href="#">Shows</a>
                     <ul class="dropdown">
-                        <li><a href="/schools">Schools</a></li>
-                        <li><a href="/currentshow">Current Show</a></li>
-                        <li><a href="auditions">Auditions</a></li>
-                        <li><a href="questions">Questions</a></li>
+                        <li><a href="{{ url('/schools') }}">Schools</a></li>
+                        <li><a href="{{ url('/currentshow') }}">Current Show</a></li>
+                        <!--<li><a href="auditions">Auditions</a></li>
+                        <li><a href="questions">Questions</a></li>-->
                     </ul>
                 </li>
                 <li class="has-dropdown">
                     <a href='#'>Troupe</a>
                     <ul class="dropdown">
-                        <li><a href="troupe">Senior Troupe</a></li>
-                        <li><a href="juniortroupe">Junior Troupe</a></li>
+                        <li><a href="{{ url('/troupe') }}">Senior Troupe</a></li>
+                        <li><a href="{{ url('/juniortroupe') }}">Junior Troupe</a></li>
                     </ul>
                 </li>
-                <li><a href='/contact'>Contact</a></li>
+                <li><a href='{{ url('/contact') }}'>Contact</a></li>
             </ul>
         </section>
     </nav>
@@ -149,7 +149,7 @@
     </div>
 </footer>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/foundation/6.2.0/foundation.min.js"></script>
+<script src="bower_components/foundation/js/foundation.min.js"></script>
 <script src="js/main.js"></script>
 
 </body>

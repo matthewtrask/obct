@@ -10,7 +10,8 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $whatsNew = WhatsNew::all();
+        $whatsNew = WhatsNew::where('active', 1)
+                            ->get();
 
         $currentShow = CurrentShow::all();
 

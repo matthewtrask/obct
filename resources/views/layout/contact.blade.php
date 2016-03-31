@@ -49,11 +49,11 @@
     }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fixed" style="margin-bottom: 40px;">
+<div class="fixed">
     <nav class="top-bar" data-topbar role="navigation">
         <ul class="title-area">
-            <li class="name" style="margin-left: 2%">
-                <a href="/"><h1>OBCT</h1></a>
+            <li class="name">
+                <a href="{{ url('/') }}"><h1>OBCT</h1></a>
             </li>
             <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
             <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -62,32 +62,32 @@
         <section class="top-bar-section">
             <!-- Right Nav Section -->
             <ul class="right">
-                <li ><a href="about">About Us</a></li>
+                <li ><a href="{{ url('/about') }}">About Us</a></li>
                 <li class="has-dropdown">
                     <a href="#">Studio</a>
                     <ul class="dropdown">
-                        <li><a href="classes">Classes</a></li>
-                        <li><a href="teachers">Teachers</a></li>
+                        <li><a href="{{ url('/classes') }}">Classes</a></li>
+                        <li><a href="{{ url('/teachers') }}">Teachers</a></li>
                     </ul>
                 </li>
-                <li><a href="summer">Summer</a></li>
+                <li><a href="{{ url('/summer') }}">Summer</a></li>
                 <li class="has-dropdown">
                     <a href="#">Shows</a>
                     <ul class="dropdown">
-                        <li><a href="schools">Schools</a></li>
-                        <li><a href="currentshow">Current Show</a></li>
-                        <li><a href="auditions">Auditions</a></li>
-                        <li><a href="questions">Questions</a></li>
+                        <li><a href="{{ url('/schools') }}">Schools</a></li>
+                        <li><a href="{{ url('/currentshow') }}">Current Show</a></li>
+                        <!--<li><a href="auditions">Auditions</a></li>
+                        <li><a href="questions">Questions</a></li>-->
                     </ul>
                 </li>
                 <li class="has-dropdown">
                     <a href='#'>Troupe</a>
                     <ul class="dropdown">
-                        <li><a href="troupe">Senior Troupe</a></li>
-                        <li><a href="juniortroupe">Junior Troupe</a></li>
+                        <li><a href="{{ url('/troupe') }}">Senior Troupe</a></li>
+                        <li><a href="{{ url('/juniortroupe') }}">Junior Troupe</a></li>
                     </ul>
                 </li>
-                <li><a href='contact'>Contact</a></li>
+                <li><a href='{{ url('/contact') }}'>Contact</a></li>
             </ul>
         </section>
     </nav>
@@ -124,13 +124,7 @@
     </div>
 </footer>
 
-<script src="../resources/assets/bower_components/foundation/js/foundation.js"></script>
-<script src="../resources/assets/bower_components/foundation/js/foundation/foundation.dropdown.js"></script>
-<script src="../resources/assets/bower_components/foundation/js/foundation/foundation.topbar.js"></script>
-<script src="../resources/assets/bower_components/foundation/js/foundation/foundation.alert.js"></script>
-<script src="../resources/assets/bower_components/foundation/js/foundation/foundation.abide.js"></script>
-<script src="../resources/assets/bower_components/foundation/js/foundation/foundation.reveal.js"></script>
-<script src="../resources/assets/bower_components/foundation/js/foundation/foundation.accordion.js"></script>
+<script src="bower_components/foundation/js/foundation.min.js"></script>
 <script src="js/main.js"></script>
 
 </body>
