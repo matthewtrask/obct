@@ -1,6 +1,57 @@
-@extends('layouts.app')
+@extends('layouts.contact')
+
+@section('title', 'Login')
 
 @section('content')
+    <div class="row">
+        <div class="large-8 large-offset-2 columns">
+            <div class="signup-panel">
+                <p class="welcome">OBCT Admin Panel</p>
+                <form role="form" method="POST" action="{{ url('/login') }}">
+                    {!! csrf_field() !!}
+                    <div class="row collapse{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <div class="small-2 columns">
+                            <span class="prefix"><i class="fa fa-user"></i></span>
+                        </div>
+                        <div class="small-10  columns">
+                            <input type="text" placeholder="email">
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="row collapse">
+                        <div class="small-2 columns ">
+                            <span class="prefix"><i class="fa fa-lock"></i></span>
+                        </div>
+                        <div class="small-10 columns ">
+                            <input type="text" placeholder="password">
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="row collapse">
+                        <div class="small-6 small-offset-3 columns">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="remember"> Remember Me
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <a href="" class="button ">Sign Up! </a>
+                <p class="text-center">Forgot Password? <a href="{{ url('/password/reset') }}">Click Here</a></p>
+            </div>
+        </div>
+    </div>
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
