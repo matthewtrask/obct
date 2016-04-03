@@ -91,6 +91,11 @@ div#upcoming {
   div#upcoming img {
     height: 300px; }
 
+div.troupe .button.register {
+  background-color: #ff6047; }
+  div.troupe .button.register a {
+    color: #fff; }
+
 #footerSM ul li {
   list-style: none;
   display: inline-block;
