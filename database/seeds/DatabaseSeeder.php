@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         //$this->call(SummerInfoTableSeeder::class);
         //$this->call(UpcomingTableSeeder::class);
         //$this->call(CurrentShowTableSeeder::class);
-        $this->call(troupeInfoSeeder::class);
+        //$this->call(troupeInfoSeeder::class);
+        $this->call(TroupeAuditionTableSeeder::class);
     }
 }

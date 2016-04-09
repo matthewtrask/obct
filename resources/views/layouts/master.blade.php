@@ -71,13 +71,14 @@
                     </ul>
                 </li>
                 <li><a href="{{ url('/summer') }}">Summer</a></li>
+                <li><a href="{{ url('/schools') }}">Schools</a></li>
                 <li class="has-dropdown">
                     <a href="#">Shows</a>
                     <ul class="dropdown">
-                        <li><a href="{{ url('/schools') }}">Schools</a></li>
                         <li><a href="{{ url('/currentshow') }}">Current Show</a></li>
-                        <!--<li><a href="auditions">Auditions</a></li>
-                        <li><a href="questions">Questions</a></li>-->
+                        <li><a href="{{ url('/upcomingshow') }}">Upcoming Show</a></li>
+                        <li><a href="{{ url('/auditions') }}">Auditions</a></li>
+                        {{--<li><a href="questions">Questions</a></li>--}}
                     </ul>
                 </li>
                 <li class="has-dropdown">

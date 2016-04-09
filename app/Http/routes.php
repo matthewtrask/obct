@@ -19,6 +19,7 @@ Route::get('/teachers', 'Obct\TeacherController@teachers');
 Route::get('/summer', 'Obct\SummerController@summer');
 Route::get('/schools', 'Obct\SchoolController@schools');
 Route::get('/currentshow', 'Obct\CurrentShowController@currentShow');
+Route::get('/auditions', 'Obct\AuditionsController@auditions');
 Route::get('/troupe', 'Obct\TroupeController@troupe');
 Route::get('/jrtroupe', 'Obct\JrTroupeController@jrTroupe');
 Route::get('/faq', 'Obct\FaqController@faq');
