@@ -27,7 +27,8 @@ class FaqController extends Controller
     public function faq()
     {
         $faq = $this->faq->all();
-        $currentShow = $this->currentShow->all();
+        $currentShow = CurrentShow::where('active', 1)
+                                  ->get();
 
         return view('obct.faq',
                     [

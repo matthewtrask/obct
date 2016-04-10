@@ -11,7 +11,8 @@ class TeacherController extends Controller
     public function teachers()
     {
         $teachers = Teacher::all();
-        $currentShow = CurrentShow::all();
+        $currentShow = CurrentShow::where('active', 1)
+                                  ->get();
 
         return view('obct.teachers',
                     [

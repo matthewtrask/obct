@@ -13,15 +13,13 @@ class ClassesController extends Controller
     {
         $classes = Classes::paginate(5);
 
-        $currentShow = CurrentShow::all();
-
-        $paginator = new Paginator($classes, count($classes), 5);
+        $currentShow = CurrentShow::where('active', 1)
+                                  ->get();
 
         return view('obct.classes',
                     [
                         'classes' => $classes,
                         'currentShow' => $currentShow,
-                        'paginate' => $paginator
                     ]
         );
     }

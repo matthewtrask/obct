@@ -15,7 +15,8 @@ class SchoolController extends Controller
 
         $schoolPoints = SchoolPoints::all();
 
-        $currentShow = CurrentShow::all();
+        $currentShow = CurrentShow::where('active', 1)
+                                  ->get();
 
         return view('obct.school',
                     [

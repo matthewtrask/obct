@@ -14,7 +14,8 @@ class ContactController extends Controller
      */
     public function contact()
     {
-        $currentShow = CurrentShow::all();
+        $currentShow = CurrentShow::where('active', 1)
+                                  ->get();
 
         return view('obct.contact',
                     [

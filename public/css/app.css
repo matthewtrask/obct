@@ -91,6 +91,11 @@ div#upcoming {
   div#upcoming img {
     height: 300px; }
 
+div.panel .button.red {
+  background-color: #ff6047; }
+  div.panel .button.red a {
+    color: #fff; }
+
 div.troupe .button.register {
   background-color: #ff6047; }
   div.troupe .button.register a {

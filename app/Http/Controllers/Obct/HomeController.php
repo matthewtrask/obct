@@ -13,7 +13,8 @@ class HomeController extends Controller
         $whatsNew = WhatsNew::where('active', 1)
                             ->get();
 
-        $currentShow = CurrentShow::all();
+        $currentShow = CurrentShow::where('active', 1)
+                            ->get();
 
         return view('obct.home', [
             'whatsNew' => $whatsNew,

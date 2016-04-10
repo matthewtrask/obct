@@ -38,16 +38,14 @@
                         </div>
                     </div>
                     <div class="row collapse">
-                        <div class="small-6 small-offset-3 columns">
+                        <div class="small-6 small-offset-2 columns">
                             <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="remember"> Remember Me
-                                </label>
+                                <input id="remember" name="remember" type="checkbox"><label for="remember">Checkbox 1</label>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-btn fa-sign-in"></i>Login
+                    <button type="submit" class="button">
+                        <i class="fa fa-sign-in"></i>Login
                     </button>
                 </form>
 

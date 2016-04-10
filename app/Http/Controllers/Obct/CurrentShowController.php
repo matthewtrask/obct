@@ -8,31 +8,13 @@ use App\Http\Controllers\Controller;
 
 class CurrentShowController extends Controller
 {
-    /**
-     * @var CurrentShow
-     */
-    private $currentShow;
-
-    /**
-     * @var Upcoming
-     */
-    private $upcoming;
-
-    /**
-     * @param CurrentShow $currentShow
-     * @param Upcoming $upcoming
-     */
-    public function __construct(CurrentShow $currentShow, Upcoming $upcoming)
-    {
-        $this->currentShow = $currentShow;
-        $this->upcoming = $upcoming;
-    }
-
     public function currentShow()
     {
-        $currentShow = $this->currentShow->all();
+        $currentShow = CurrentShow::where('active', 1)
+                                        ->get();
 
-        $upcoming = $this->upcoming->all();
+        $upcoming = Upcoming::where('active', 1)
+                                    ->get();
 
 
         return view('obct.currentShow',

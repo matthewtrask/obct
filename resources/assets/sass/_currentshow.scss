@@ -4,3 +4,12 @@ div#upcoming {
   height: 300px;
  }
 }
+
+div.panel {
+ .button.red {
+  background-color: $red;
+   a {
+    color: #fff;
+   }
+ }
+}

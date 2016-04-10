@@ -42,7 +42,8 @@ class AuditionsController extends Controller
         $auditions = $this->auditions->where('audition_active', 1)
                                      ->get();
 
-        $currentShow = $this->currentShow->all();
+        $currentShow = CurrentShow::where('active', 1)
+                                  ->get();
 
         return view('obct.auditions', [
            'currentShow' => $currentShow,

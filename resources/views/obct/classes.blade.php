@@ -27,8 +27,5 @@
         </div>
 
     @endforeach
-    <ul class="pagination">
-        {{$paginate->render()}}
-    </ul>
 
 @endsection
