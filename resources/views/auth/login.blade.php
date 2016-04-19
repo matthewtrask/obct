@@ -37,22 +37,27 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row collapse">
-                        <div class="small-6 small-offset-2 columns">
+                    <div class="row">
+                        <div class="small-12 columns">
                             <div class="checkbox">
-                                <input id="remember" name="remember" type="checkbox"><label for="remember">Checkbox 1</label>
+                                {{--<div id="checkbox">--}}
+                                    {{--<label for="remember"><input id="remember" name="remember" type="checkbox">Checkbox 1</label>--}}
+                                {{--</div>--}}
+                                <div id="label">
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="button">
-                        <i class="fa fa-sign-in"></i>Login
+                    <button type="submit" class="button">Login
                     </button>
                 </form>
-
-                <p class="text-center">Forgot Password? <a href="{{ url('/password/reset') }}">Click Here</a></p>
+                <p>Forgot Password? <a href="{{ url('/password/reset') }}">Click Here</a></p>
             </div>
+
         </div>
     </div>
+
 
 
 @endsection

@@ -11,7 +11,7 @@ class ClassesController extends Controller
 {
     public function classes()
     {
-        $classes = Classes::paginate(5);
+        $classes = Classes::all();
 
         $currentShow = CurrentShow::where('active', 1)
                                   ->get();

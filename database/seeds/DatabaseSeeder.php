@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         //$this->call(UpcomingTableSeeder::class);
         //$this->call(CurrentShowTableSeeder::class);
         //$this->call(troupeInfoSeeder::class);
-        $this->call(TroupeAuditionTableSeeder::class);
+        //$this->call(TroupeAuditionTableSeeder::class);
+        $this->call(StudentsTableSeeder::class);
     }
 }

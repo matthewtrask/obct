@@ -11,7 +11,6 @@ class AdminController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -25,6 +24,6 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('admin.home');
     }
 }

@@ -10,11 +10,12 @@
     @endforeach
 
 
-    <dl class="panel">
+    <dl class="panel" id="summerShows">
         <dt>Select:</dt>
         <dd><a href="#1">Elf Jr.</a></dd>
         <dd><a href="#2">Aladdin Kids</a></dd>
         <dd><a href="#3">High School Musical And More</a></dd>
+        <dd><a href="#4">Cirque Du Off Broadway</a></dd>
     </dl>
 
 
