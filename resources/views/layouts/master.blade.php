@@ -76,7 +76,7 @@
                     <a href="#">Shows</a>
                     <ul class="dropdown">
                         <li><a href="{{ url('/currentshow') }}">Current Show</a></li>
-                        <li><a href="{{ url('/upcomingshow') }}">Upcoming Show</a></li>
+                        {{--<li><a href="{{ url('/upcomingshow') }}">Upcoming Show</a></li>--}}
                         <li><a href="{{ url('/auditions') }}">Auditions</a></li>
                         {{--<li><a href="questions">Questions</a></li>--}}
                     </ul>
