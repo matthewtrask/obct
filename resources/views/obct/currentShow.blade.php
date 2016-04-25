@@ -25,7 +25,7 @@
 
         </div>
     @endforeach
-    
+
     <hr>
     <h2>Upcoming shows</h2>
     <div class="row">
