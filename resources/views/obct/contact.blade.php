@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         <div class="small-6 columns">
-            <form method="POST" action="http://192.168.33.11/obct/public/contact" id="contactForm" name="contactForm">
+            <form method="POST" action="{{url('/contactMsg')}}" id="contactForm" name="contactForm">
                 <div class="row">
                     <div class="large-12 columns">
                         <label>Name
@@ -41,7 +41,7 @@
                 <div class="row">
                     <div class="large-12 columns">
                         <label>Input Label
-                            <textarea rows="5" type="text" placeholder="Message for OBCT..." name="message" for="message" id="message"></textarea>
+                            <textarea rows="5" placeholder="Message for OBCT..." name="message" for="message" id="message"></textarea>
                         </label>
                     </div>
                 </div>

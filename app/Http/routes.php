@@ -25,7 +25,7 @@ Route::get('/jrtroupe', 'Obct\JrTroupeController@jrTroupe');
 Route::get('/faq', 'Obct\FaqController@faq');
 Route::get('/contact', 'Obct\ContactController@contact');
 
-Route::post('/contact', 'Obct\ContactController@postContact');
+Route::post('/contactMsg', 'Obct\ContactController@postContact');
 
 
 
