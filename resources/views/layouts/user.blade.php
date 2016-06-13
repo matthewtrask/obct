@@ -32,7 +32,7 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/foundation/6.2.0/foundation.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
 
-    <link href="{{url('/')}}/css/app.css" rel="stylesheet">
+    <link href="http://192.168.33.10/offbroadway/public/css/app.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
 
@@ -71,14 +71,13 @@
                     </ul>
                 </li>
                 <li><a href="{{ url('/summer') }}">Summer</a></li>
-                <li><a href="{{ url('/schools') }}">Schools</a></li>
                 <li class="has-dropdown">
                     <a href="#">Shows</a>
                     <ul class="dropdown">
+                        <li><a href="{{ url('/schools') }}">Schools</a></li>
                         <li><a href="{{ url('/currentshow') }}">Current Show</a></li>
-                        {{--<li><a href="{{ url('/upcomingshow') }}">Upcoming Show</a></li>--}}
-                        <li><a href="{{ url('/auditions') }}">Auditions</a></li>
-                        {{--<li><a href="questions">Questions</a></li>--}}
+                        <!--<li><a href="auditions">Auditions</a></li>
+                        <li><a href="questions">Questions</a></li>-->
                     </ul>
                 </li>
                 <li class="has-dropdown">
@@ -89,38 +88,23 @@
                     </ul>
                 </li>
                 <li><a href='{{ url('/contact') }}'>Contact</a></li>
+                <li><a href='{{ url('/logout') }}'><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
             </ul>
         </section>
     </nav>
+    <div class="panel">
+        <dl class="sub-nav">
+            <dt>Options:</dt>
+            <dd class="active"><a href="#">Dashboard</a></dd>
+            <dd><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> Add Student</a></dd>
+            <dd><a href="#"><i class="fa fa-user" aria-hidden="true"></i> Edit Student</a></dd>
+            <dd><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> Notifications</a></dd>
+        </dl>
+    </div>
 </div>
 <div class="row" id="main">
-    <div class="small-12 medium-9 columns">
+    <div class="small-12 medium-12 columns">
         @yield('content')
-    </div>
-    <div class="small-12 medium-3 columns" id="sidebar">
-        <div class="logo" style="margin-bottom: 10%">
-            <img src="img/green-logo.png" alt="Off Broadway Logo">
-        </div>
-        <div class="panel">
-            <h3>Current Show</h3><hr>
-            @foreach($currentShow as $show)
-                <h4>{{$show->show_title}}</h4>
-                <img src="data:image/jpg;base64,{{$show->show_image}}">
-                <button class="button expand show"><a href="{{$show->link}}">Buy Tickets</a></button>
-            @endforeach
-        </div>
-        <div class="panel">
-            <h3>Summer Sessions</h3>
-            <hr>
-            <button class="button success expand"><a href="summer">Information Here</a></button>
-        </div>
-        <div class="panel">
-            <h3>Contact</h3>
-            <hr>
-            <button class="button message expand"><a href="contact">Contact Us</a></button>
-        </div>
-        <div class="fb-page" data-href="https://www.facebook.com/offbroadwaydancetheater/?fref=ts" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/offbroadwaydancetheater/?fref=ts"><a href="https://www.facebook.com/offbroadwaydancetheater/?fref=ts">Off Broadway Children&#039;s Theatre</a></blockquote></div></div>
-    </div>
     </div>
 </div>
 <footer>
@@ -150,9 +134,7 @@
     </div>
 </footer>
 
-<script src="{{url('/')}}/bower_components/foundation/js/foundation.min.js"></script>
-<script src="{{url('/')}}/js/main.js">
-    $(document).foundation();
-</script>
+<script src="/bower_components/foundation/js/foundation.min.js"></script>
+<script src="/js/main.js"></script>
 
 </body>

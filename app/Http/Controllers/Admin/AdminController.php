@@ -4,17 +4,25 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
     /**
+     * @var User
+     */
+    private $user;
+
+    /**
      * Create a new controller instance.
      *
      */
-    public function __construct()
+    public function __construct(User $user)
     {
         $this->middleware('auth');
+
+        $this->user = $user;
     }
 
     /**
@@ -24,6 +32,12 @@ class AdminController extends Controller
      */
     public function index()
     {
+        $id = Auth::user()->id;
+
+        if (!$this->user->where('is_admin', 1)) {
+            redirect('/login');
+        }
+
         return view('admin.home');
     }
 }

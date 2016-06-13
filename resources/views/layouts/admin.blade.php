@@ -32,7 +32,7 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/foundation/6.2.0/foundation.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
 
-    <link href="css/app.css" rel="stylesheet">
+    <link href="{{url('/')}}/css/app.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
 
@@ -99,7 +99,9 @@
     </div>
 </footer>
 
-<script src="bower_components/foundation/js/foundation.min.js"></script>
-<script src="js/main.js"></script>
-
+<script src="{{url('/')}}/bower_components/foundation/js/foundation.min.js"></script>
+<script src="{{url('/')}}/js/main.js"></script>
+<script>
+    $(document).foundation();
+</script>
 </body>

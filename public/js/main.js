@@ -26,5 +26,43 @@ $(document).ready(function(){
         }
     });
 
+    $('button.button#cast').on('click', function(){
+        var data = $('form#cast').serialize();
+        console.log(data);
+        $.ajax({
+            url: '/admin/cast',
+            data: data,
+            cache: false,
+            async: true,
+            success: function() {
+                console.log(data);
+            },
+            failure: function() {
+
+            }
+        });
+    });
+
+    $('button.button#editCast').on('click', function(){
+        var data = $('form#editCast').serialize();
+        console.log(data);
+        $.ajax({
+            url: '/admin/editCast',
+            data: data,
+            method: patch,
+            cache: false,
+            async: true,
+            success: function() {
+                console.log(data);
+            },
+            failure: function() {
+
+            }
+        });
+    });
+
+
+
+
 
 });

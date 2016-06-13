@@ -24,8 +24,17 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function isAdmin()
+    public function roles()
     {
-        return $this->admin;
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function hasRole($role)
+    {
+        if(is_string($role)) {
+          return $this->role->containers('name', $role);
+        }
+
+        return !! $role->intersect($this->role)->count();
     }
 }

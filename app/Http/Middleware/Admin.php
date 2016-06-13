@@ -18,4 +18,9 @@ class Admin
     {
         return redirect('home');
     }
+
+    public function checkRole()
+    {
+        
+    }
 }

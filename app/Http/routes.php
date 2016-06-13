@@ -19,6 +19,7 @@ Route::get('/teachers', 'Obct\TeacherController@teachers');
 Route::get('/summer', 'Obct\SummerController@summer');
 Route::get('/schools', 'Obct\SchoolController@schools');
 Route::get('/currentshow', 'Obct\CurrentShowController@currentShow');
+Route::get('/cast', 'Obct\CastController@cast');
 Route::get('/auditions', 'Obct\AuditionsController@auditions');
 Route::get('/troupe', 'Obct\TroupeController@troupe');
 Route::get('/jrtroupe', 'Obct\JrTroupeController@jrTroupe');
@@ -46,6 +47,22 @@ Route::group(['middleware' => ['web']], function () {
 
 Route::group(['middleware' => ['web']], function () {
     Route::auth();
+    
+    // Admin
+    Route::get('/admin/cast', 'Admin\CastController@cast');
+    Route::post('/admin/cast', 'Admin\CastController@addCast');
+    Route::patch('/admin/editCast', 'Admin\CastController@editCast');
+
+
+    // User
+    Route::get('/user', 'Users\DashboardController@index');
+    Route::get('/user/{id}/edit', 'Users\UsersController@editInfo');
+
+
+    Route::get('/user/{id}/signup', 'Users\StudentController@registerStudent');
+    Route::post('/user/{id}/singup/add', 'Users\StudentController@addStudent');
+    Route::get('/user/{id}/view', 'Users\StudentController@viewInfo');
+    Route::get('/user/{id}/register', 'Users\RegisterController@index');
 
     Route::get('/admin', 'Admin\AdminController@index');
     route::get('/admin/about', 'Admin\AboutController@index');

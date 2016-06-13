@@ -10,7 +10,8 @@
         "laravelcollective/html": "5.2.*",
         "omnipay/paypal": "~2.0",
         "doctrine/dbal": "2.5.4",
-        "guzzlehttp/guzzle": "~5.3|~6.0"
+        "guzzlehttp/guzzle": "~5.3|~6.0",
+        "chromabits/foundation-pagination": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

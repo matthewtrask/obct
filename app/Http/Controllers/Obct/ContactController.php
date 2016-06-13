@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Obct;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Http\Request;
 use App\CurrentShow;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
@@ -27,10 +26,7 @@ class ContactController extends Controller
         );
     }
 
-    /**
-     * @param Request $request
-     */
-    public function postContact(Request $request)
+    public function postContact()
     {
         $input = Input::all('name', 'phone', 'email', 'message');
         $name = $input['name'];
