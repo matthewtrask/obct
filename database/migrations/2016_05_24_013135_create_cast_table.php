@@ -23,8 +23,7 @@ class CreateCastTable extends Migration
 
             $table->foreign('show_id')
                 ->references('id')
-                ->on('currentShow')
-                ->onDelete('cascade');
+                ->on('currentShow');
         });
     }
 
