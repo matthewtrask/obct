@@ -61,6 +61,23 @@ $(document).ready(function(){
         });
     });
 
+    $('button.button#whatsNew').on('click', function(){
+        var data = $('form#whatsNew').serialize();
+        console.log(data);
+        $.ajax({
+            url: '/admin/whatsNew',
+            data: data,
+            method: patch,
+            cache: false,
+            async: true,
+            success: function() {
+                console.log(data);
+            },
+            failure: function() {
+
+            }
+        });
+    });
 
 
 
