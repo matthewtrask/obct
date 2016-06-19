@@ -131,12 +131,7 @@
                                 <label for="right-label" class="right inline">Show</label>
                             </div>
                             <div class="small-9 columns">
-                                @foreach($shows as $show)
-                                    <select title="show" name="show_id">
-                                        <option>Select</option>
-                                        <option value="{{$show->id}}">{{$show->show_title}}</option>
-                                    </select>
-                                @endforeach
+                                <input type="text" name="cast" value="{{$cast->show_id}}"/>
                             </div>
                         </div>
                     </div>

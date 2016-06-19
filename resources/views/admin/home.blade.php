@@ -8,52 +8,60 @@
 
     <div class="row">
 
-        <h2>Admin Panel</h2>
+        <h2>Admin Panel</h2><hr>
+        <div class="small-6 columns" id="sidenav">
 
-        <ul class="tabs" data-tab>
-            <li class="tab-title active"><a href="#panel1">Email</a></li>
-            <li class="tab-title"><a href="#panel2">Student Info</a></li>
-            <li class="tab-title"><a href="#panel3">Tab 3</a></li>
-            <li class="tab-title"><a href="#panel4">Tab 4</a></li>
-        </ul>
-        <div class="tabs-content">
-            <div class="content active" id="panel1">
-               <div class="row">
-                   <div class="small-6 columns">
-                       <p>Send a message</p>
-                       <form method="POST" action="{{url('/messageOut')}}">
-
-                       </form>
-                   </div>
-
-               </div>
-            </div>
-            <div class="content" id="panel2">
-                <ul class="accordion" data-accordion>
-                    <li class="accordion-navigation">
-                        <a href="#panel1a">Accordion 1</a>
-                        <div id="panel1a" class="content active">
-                            Panel 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </div>
+        <div class="small-6 columns" id="mainnav">
+            @if (session('updated'))
+                <div data-alert class="alert-box">
+                    {{ session('updated') }}
+                    <a href="#" class="close">&times;</a>
+                </div>
+            @endif
+            <div class="panel">
+                <form method="POST" action="{{url('/admin/whatsNew')}}" id="whatsNew">
+                    {!! csrf_field() !!}
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <label>Title
+                                <input type="text" name="title" placeholder="Title" />
+                            </label>
                         </div>
-                    </li>
-                    <li class="accordion-navigation">
-                        <a href="#panel2a">Accordion 2</a>
-                        <div id="panel2a" class="content">
-                            Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <label>Message
+                                <textarea rows="5" name="message" placeholder="Message"></textarea>
+                            </label>
                         </div>
-                    </li>
-                    <li class="accordion-navigation">
-                        <a href="#panel3a">Accordion 3</a>
-                        <div id="panel3a" class="content">
-                            Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <label>Select Page
+                                <select name="page">
+                                    <option>Pick a Page</option>
+                                    <option value="about">About</option>
+                                    <option value="classes">Classes</option>
+                                    <option value="teachers">Teachers</option>
+                                    <option value="summer">Summer</option>
+                                    <option value="schools">Schools</option>
+                                    <option value="currentshow">Current Show</option>
+                                    <option value="cast">Cast</option>
+                                    <option value="auditions">Auditions</option>
+                                    <option value="troupe">Troupe</option>
+                                    <option value="jrtroupe">Jr. Troupe</option>
+                                    <option value="faq">FAQ</option>
+                                </select>
+                            </label>
                         </div>
-                    </li>
-                </ul>            </div>
-            <div class="content" id="panel3">
-                <p>This is the third panel of the basic tab example. This is the third panel of the basic tab example.</p>
-            </div>
-            <div class="content" id="panel4">
-                <p>This is the fourth panel of the basic tab example. This is the fourth panel of the basic tab example.</p>
+                    </div>
+                    <div class="row">
+                        <div class="large-4 columns">
+                            <button class="button" type="submit" id="whatsNew">Submit</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
