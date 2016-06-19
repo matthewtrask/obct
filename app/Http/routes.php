@@ -49,6 +49,13 @@ Route::group(['middleware' => ['web']], function () {
     Route::auth();
     
     // Admin
+    Route::get('/admin', 'Admin\AdminController@index');
+
+    Route::post('/admin/whatsNew', 'Admin\AdminController@newUpdate');
+
+    Route::get('/admin/performances', 'Admin\PerformanceController@index');
+    Route::post('/admin/newPerformance', 'Admin\PerformancesController@addNewShow');
+
     Route::get('/admin/cast', 'Admin\CastController@cast');
     Route::post('/admin/cast', 'Admin\CastController@addCast');
     Route::patch('/admin/editCast', 'Admin\CastController@editCast');
@@ -60,10 +67,9 @@ Route::group(['middleware' => ['web']], function () {
 
 
     Route::get('/user/{id}/signup', 'Users\StudentController@registerStudent');
-    Route::post('/user/{id}/singup/add', 'Users\StudentController@addStudent');
+    Route::post('/user/{id}/singup/add', 'Users\StudentController@addStudent'); 
     Route::get('/user/{id}/view', 'Users\StudentController@viewInfo');
     Route::get('/user/{id}/register', 'Users\RegisterController@index');
 
-    Route::get('/admin', 'Admin\AdminController@index');
-    route::get('/admin/about', 'Admin\AboutController@index');
+
 });

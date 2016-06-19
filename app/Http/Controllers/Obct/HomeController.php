@@ -8,13 +8,32 @@ use App\CurrentShow;
 
 class HomeController extends Controller
 {
+    /**
+     * @var WhatsNew
+     */
+    private $whatsNew;
+
+    /**
+     * @var CurrentShow
+     */
+    private $currentShow;
+
+    public function __construct(WhatsNew $whatsNew, CurrentShow $currentShow)
+    {
+        $this->whatsNew = $whatsNew;
+        $this->currentShow= $currentShow;
+    }
+
     public function home()
     {
-        $whatsNew = WhatsNew::where('active', 1)
-                            ->get();
+        $whatsNew = $this->whatsNew
+                ->where('active', 1)
+                ->orderBy('id', 'DESC')
+                ->get();
 
-        $currentShow = CurrentShow::where('active', 1)
-                            ->get();
+        $currentShow = $this->currentShow
+                ->where('active', 1)
+                ->get();
 
         return view('obct.home', [
             'whatsNew' => $whatsNew,

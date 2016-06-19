@@ -10,6 +10,6 @@ class Cast extends Model
     protected $model = 'cast';
 
     protected $fillable = [
-        'show_id', 'student', 'role', 'cast', 'active',
+        'cast_id', 'show_id', 'student', 'role', 'cast', 'active',
     ];
 }

@@ -73,22 +73,22 @@ class CastController extends Controller
         $data = Input::all();
 
         $id = $data['cast_id'];
+        $show_id = $data['show_id'];
         $student = $data['student'];
         $role = $data['role'];
         $cast = $data['cast'];
-
-        var_dump($data);
 
         $this->cast->where('active', $id)
                 ->update(
                     [
                         'student' => $student,
+                        'show_id' => $show_id,
                         'role' => $role,
                         'cast' => $cast
                     ]
                 );
 
-        return redirect('/admin/cast')->with('edit', 'The cast was edited!');
+        return redirect('/admin/cast')->with('updated', 'The cast was edited!');
     }
 
     public function removeCast()
