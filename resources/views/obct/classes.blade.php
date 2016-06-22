@@ -5,9 +5,7 @@
 @section('content')
 
     <h2>Classes</h2>
-    <div data-alert class="alert-box success radius">
-        <h4>We will be updating our classes over the summer. <br>The 2016-2017 class schedule will be available after 6/1/2016.</h4>
-    </div>
+
     @foreach($classes as $class)
         <div class="panel" id="classes">
             <h3>{{$class->class_name}}</h3>

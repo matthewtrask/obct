@@ -59,6 +59,16 @@ div#whatsNew {
     div#whatsNew button.button.whatsnew a {
       color: #fff !important; }
 
+div.panel#faq button.button.whatsnew {
+  background-color: #ff6047 !important; }
+  div.panel#faq button.button.whatsnew a {
+    color: #fff !important; }
+
+div.panel#auditions button.button.whatsnew {
+  background-color: #ff6047 !important; }
+  div.panel#auditions button.button.whatsnew a {
+    color: #fff !important; }
+
 @media only screen and (min-width: 640px) {
   ul.title-area li.name a h1 {
     padding-left: 30%; } }

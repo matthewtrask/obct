@@ -94,6 +94,12 @@
     </nav>
 </div>
 <div class="row" id="main">
+    <div class="small-12 columns">
+        <div data-alert class="alert-box alert">
+            <h4>Class schedule for  the Fall 2016 session is now open. Click <a href="{{url('/classes')}}">here</a> to see!</h4>
+            <a href="#" class="close">&times;</a>
+        </div>
+    </div>
     <div class="small-12 medium-9 columns">
         @yield('content')
     </div>
