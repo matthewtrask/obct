@@ -7,6 +7,26 @@
     <h2>Performances Management</h2><hr>
 
     <div class="row">
+        <div class="small-12 columns">
+            @foreach($performances as $performance)
+            <div class="panel">
+                <div class="row">
+                    <div class="small-8 columns">
+                        <h4 id="title">{{$performance->title}}</h4>
+                        <p>{{$performance->dates}}</p>
+                        <p>{{$performance->link}}</p>
+                    </div>
+                    <div class="small-4 columns">
+
+                    </div> m
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+
+
+    <div class="row">
         <div class="medium-5 columns">
             <h4>Current Show Listing</h4>
             @foreach($performances as $performance)

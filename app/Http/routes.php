@@ -41,14 +41,7 @@ Route::post('/contactMsg', 'Obct\ContactController@postContact');
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
-
-Route::group(['middleware' => ['web']], function () {
-    Route::auth();
-    
-    // Admin
+Route::group(['middleware' => 'adminAuth'], function () {
     Route::get('/admin', 'Admin\AdminController@index');
 
     Route::post('/admin/whatsNew', 'Admin\AdminController@newUpdate');
@@ -59,7 +52,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/admin/cast', 'Admin\CastController@cast');
     Route::post('/admin/cast', 'Admin\CastController@addCast');
     Route::patch('/admin/editCast', 'Admin\CastController@editCast');
+});
 
+Route::group(['middleware' => ['web']], function () {
+    Route::auth();
 
     // User
     Route::get('/user', 'Users\DashboardController@index');

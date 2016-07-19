@@ -11,7 +11,7 @@ class Performance extends Model
 
     protected $fillable = [
         'title',
-        'teaster',
+        'teaser',
         'description',
         'dates',
         'price',

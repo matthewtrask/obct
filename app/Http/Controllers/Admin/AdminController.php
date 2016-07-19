@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use GuzzleHttp\Client;
+
+use App\Classes;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\User;
 use App\WhatsNew;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
 
 class AdminController extends Controller
 {
@@ -22,15 +25,26 @@ class AdminController extends Controller
     private $whatsNew;
 
     /**
+     * @var Classes
+     */
+    private $classes;
+
+    /**
+     * @var Client
+     */
+    private $client;
+
+    /**
      * Create a new controller instance.
      *
      */
-    public function __construct(User $user, WhatsNew $whatsNew)
+    public function __construct(User $user, WhatsNew $whatsNew, Classes $classes)
     {
         $this->middleware('auth');
 
         $this->user = $user;
         $this->whatsNew = $whatsNew;
+        $this->classes = $classes;
     }
 
     /**
@@ -40,13 +54,12 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->id;
+        $classes = $this->classes->get();
 
-        if (!$this->user->where('is_admin', 1)) {
-            redirect('/login');
-        }
-
-        return view('admin.home');
+        $classCount = count($classes);
+        return view('admin.home', [
+            'classes' => $classCount
+        ]);
     }
 
     public function newUpdate(Request $request)

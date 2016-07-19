@@ -10,7 +10,24 @@
 
         <h2>Admin Panel</h2><hr>
         <div class="small-6 columns" id="sidenav">
-
+            <div class="panel">
+                <h2>Stats</h2>
+            </div>
+            <div class="panel">
+                <p><i class="fa fa-envelope-o" aria-hidden="true"></i> Messages: #</p>
+            </div>
+            <div class="panel">
+                <p><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook: #</p>
+            </div>
+            <div class="panel">
+                <p><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter: #</p>
+            </div>
+            <div class="panel">
+                <p><i class="fa fa-users" aria-hidden="true"></i> Registered Students: #</p>
+            </div>
+            <div class="panel">
+                <p><i class="fa fa-graduation-cap" aria-hidden="true"></i> Classes: {{$classes}}</p>
+            </div>
         </div>
         <div class="small-6 columns" id="mainnav">
             @if (session('updated'))
@@ -19,6 +36,9 @@
                     <a href="#" class="close">&times;</a>
                 </div>
             @endif
+            <div class="panel">
+                <h2>Whats New</h2>
+            </div>
             <div class="panel">
                 <form method="POST" action="{{url('/admin/whatsNew')}}" id="whatsNew">
                     {!! csrf_field() !!}
