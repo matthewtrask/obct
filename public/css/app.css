@@ -176,6 +176,30 @@ div#cast a i.fa.fa-pencil-square {
 div#cast a i.fa.fa-times {
   color: #880000; }
 
+div.small-3.columns#addPerformance button.button.red {
+  background-color: #fff;
+  border: 1px solid #ff6047; }
+  div.small-3.columns#addPerformance button.button.red a {
+    color: #ff6047; }
+
+button.button.red {
+  background-color: #ff6047; }
+  button.button.red a {
+    color: #fff; }
+
+button.button.green {
+  background-color: #47ffa3; }
+  button.button.green a {
+    color: #fff; }
+
+button.button#addSchool {
+  background-color: #7547ff; }
+  button.button#addSchool a {
+    color: #fff; }
+
+div#panel {
+  border: 1px solid #5d5d5d; }
+
 meta.foundation-version {
   font-family: "/5.5.3/"; }
 

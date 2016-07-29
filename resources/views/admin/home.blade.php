@@ -3,13 +3,18 @@
 @section('title', 'Admin')
 
 @section('content')
-
-
-
-    <div class="row">
-
-        <h2>Admin Panel</h2><hr>
-        <div class="small-6 columns" id="sidenav">
+        <div class="small-3 columns">
+            <div class="panel">
+                <h2>Pages</h2>
+            </div>
+            <ul class="side-nav">
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 2</a></li>
+                <li><a href="#">Link 3</a></li>
+                <li><a href="#">Link 4</a></li>
+            </ul>
+        </div>
+        <div class="small-3 columns" id="sidenav">
             <div class="panel">
                 <h2>Stats</h2>
             </div>
@@ -85,7 +90,5 @@
             </div>
         </div>
 
-
-    </div>
 
 @endsection

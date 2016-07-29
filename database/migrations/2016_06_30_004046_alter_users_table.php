@@ -16,6 +16,13 @@ class AlterUsersTable extends Migration
             $table->string('phone')->after('email');
             $table->boolean('is_admin')->default(false)->after('remember_token');
         });
+
+        DB::table('users')->insert(
+            array(
+                'email' => 'name@domain.com',
+                'verified' => true
+            )
+        );
     }
 
     /**

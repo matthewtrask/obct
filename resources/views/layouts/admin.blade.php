@@ -67,9 +67,10 @@
         </section>
     </nav>
 </div>
-<div class="row" id="main">
+<div id="main">
     <div class="small-12 medium-12 columns">
         @yield('content')
+
     </div>
 </div>
 <footer>

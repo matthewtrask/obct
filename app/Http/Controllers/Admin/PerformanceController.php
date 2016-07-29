@@ -31,6 +31,7 @@ class PerformanceController extends Controller
         $performances = $this->performance
             ->where('active', 1)
             ->orWhere('upcoming', 1)
+            ->orWhere('auditions', 1)
             ->get();
 
         return view('admin.performance',

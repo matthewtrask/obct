@@ -79,6 +79,24 @@ $(document).ready(function(){
         });
     });
 
+    $('button.button#addSchool').on('click', function() {
+        var data = $('form#addSchool').serialize();
+        console.log(data);
+        $.ajax({
+            url: '/admin/schools',
+            data: data,
+            method: post,
+            cache: false,
+            async: true,
+            success: function() {
+                console.log(data);
+            },
+            failure: function() {
+
+            }
+        });
+    });
+
 
 
 
