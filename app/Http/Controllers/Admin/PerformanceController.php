@@ -18,8 +18,7 @@ class PerformanceController extends Controller
 
     /**
      * PerformanceController constructor.
-     * @param Upcoming $upcoming
-     * @param CurrentShow $currentShow
+     * @param Performance $performance
      */
     public function __construct(Performance $performance)
     {
@@ -43,7 +42,42 @@ class PerformanceController extends Controller
 
     public function addNewPerformance(Request $request)
     {
-        $newPerformance = $this->performance;
+        var_dump($request->upcoming);
+
+        $performance = $this->performance;
+        $performance->title = $request->title;
+        $performance->teaser = $request->teaser;
+        $performance->description = $request->description;
+        $performance->dates = $request->dates;
+        $performance->price = $request->price;
+        $performance->link = $request->link;
+        $performance->cast_page = '/cast';
+        $performance->show_image = base64_encode($request->file('image'));
+
+        if(isset($request->active)){
+            $performance->active = $request->active;
+        } else {
+            $performance->active = 0;
+        }
+
+        if(isset($request->upcoming)){
+            $performance->upcoming = $request->upcoming;
+        } else {
+            $performance->upcoming = 0;
+        }
+
+        if(isset($request->auditions)){
+            $performance->auditions = $request->auditions;
+            $performance->upcoming = 1;
+        } else {
+            $performance->auditions = 0;
+        }
+
+        $performance->past = 0;
+
+        $performance->save();
+        return redirect('/admin/performances')->with('updated', 'Performance has been added!');
+
     }
 
     public function editPerformance(Request $request)

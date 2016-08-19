@@ -197,6 +197,11 @@ button.button#addSchool {
   button.button#addSchool a {
     color: #fff; }
 
+button.button.deleteSchool {
+  background-color: #21759b; }
+  button.button.deleteSchool a {
+    color: #fff; }
+
 div#panel {
   border: 1px solid #5d5d5d; }
 

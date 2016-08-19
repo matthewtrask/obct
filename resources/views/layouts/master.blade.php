@@ -112,7 +112,12 @@
             @foreach($currentShow as $show)
                 <h4>{{$show->show_title}}</h4>
                 <img src="data:image/jpg;base64,{{$show->show_image}}">
-                <button class="button expand show"><a href="{{$show->link}}">Buy Tickets</a></button>
+                @if($show->link !== '')
+                    <button class="button expand show"><a href="{{$show->link}}">Buy Tickets</a></button>
+                @endif
+                @if($show->link == '')
+                    <p><b>Coming Soon!</b></p>
+                @endif
             @endforeach
         </div>
         <div class="panel">

@@ -49,6 +49,9 @@ class SchoolsController extends Controller
 
     public function delete($school_id)
     {
+        $this->schools->destroy($school_id);
+
+        return redirect('/admin/schools')->with('updated', 'School has been deleted!');
 
     }
 }

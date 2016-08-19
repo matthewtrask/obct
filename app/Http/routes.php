@@ -47,16 +47,16 @@ Route::group(['middleware' => 'adminAuth'], function () {
     Route::post('/admin/whatsNew', 'Admin\AdminController@newUpdate');
 
     Route::get('/admin/performances', 'Admin\PerformanceController@index');
-    Route::post('/admin/newPerformance', 'Admin\PerformancesController@addNewShow');
+    Route::post('/admin/newPerformance', 'Admin\PerformanceController@addNewPerformance');
 
     Route::get('/admin/schools', 'Admin\SchoolsController@index');
     Route::post('/admin/schools', 'Admin\SchoolsController@add');
-    Route::put('/admin/schools/{school_id}', 'Admin\SchoolsController@edit');
-    Route::delete('/admin/schools/{school_id}', 'Admin\SchoolsController@delete');
+    Route::put('/admin/schools/{id}', 'Admin\SchoolsController@edit');
+    Route::post('/admin/schools/delete/{id}', 'Admin\SchoolsController@delete');
 
     Route::get('/admin/cast', 'Admin\CastController@cast');
     Route::post('/admin/cast', 'Admin\CastController@addCast');
-    Route::patch('/admin/editCast', 'Admin\CastController@editCast');
+    Route::put('/admin/editCast', 'Admin\CastController@editCast');
 });
 
 Route::group(['middleware' => ['web']], function () {

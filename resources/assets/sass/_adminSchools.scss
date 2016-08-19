@@ -19,6 +19,13 @@ button.button#addSchool {
   }
 }
 
+button.button.deleteSchool {
+  background-color: $wordpress;
+  a {
+    color: #fff;
+  }
+}
+
 div#panel {
   border: 1px solid $gray;
 }

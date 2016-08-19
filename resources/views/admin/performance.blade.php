@@ -38,17 +38,16 @@
                     </div>
                     <p>{{$performance->dates}}</p>
                     <p>{{$performance->link}}</p>
+                    <img src="data:image/jpg;base64,{{$performance->show_image}}">
                 </div>
             @endforeach
         </div>
     </div>
 
-
-
-    <div class="medium-12 columns">
-        <h4>Add New Performance</h4>
+    <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+        <h2 id="modalTitle">Add New Performance</h2>
         <div class="panel">
-            <form method="post" action="{{url('/admin/')}}" id="addPerformance">
+            <form method="post" enctype="multipart/form-data" action="{{url('/admin/newPerformance')}}" id="addPerformance">
                 <div class="row">
                     <div class="small-12 columns">
                         <div class="row">
@@ -76,47 +75,69 @@
                                 <label for="right-label" class="right inline">Performance Description</label>
                             </div>
                             <div class="small-9 columns">
-                                <textarea rows="5" type="text" name="teaser" id="right-label" placeholder="Performance Title"></textarea>
+                                <textarea rows="5" type="text" name="description" id="right-label" placeholder="Performance Description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="small-12 columns">
+                        <div class="row">
+                            <div class="small-3 columns">
+                                <label for="right-label" class="right inline">Dates</label>
+                            </div>
+                            <div class="small-9 columns">
+                                <input type="text" name="dates" id="right-label" placeholder="Performance Dates" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="small-12 columns">
+                        <div class="row">
+                            <div class="small-3 columns">
+                                <label for="right-label" class="right inline">Prices</label>
+                            </div>
+                            <div class="small-9 columns">
+                                <input type="text" name="price" id="right-label" placeholder="Performance Prices" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="small-12 columns">
+                        <div class="row">
+                            <div class="small-3 columns">
+                                <label for="right-label" class="right inline">Ticket Link</label>
+                            </div>
+                            <div class="small-9 columns">
+                                <input type="text" name="link" id="right-label" placeholder="Performance Ticket Link" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="small-12 columns">
+                        <div class="row">
+                            <div class="small-3 columns">
+                                <label for="right-label" class="right inline">Performance Image</label>
+                            </div>
+                            <div class="small-9 columns">
+                                <input type="file" name="image" id="fileToUpload">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="small-12 columns">
+                        <div class="row">
+                            <div class="small-3 columns">
+                                <label for="right-label" class="right inline">Performance Status</label>
+                            </div>
+                            <div class="small-9 columns">
+                                <input name="active" type="radio" value="1"><label for="active">Current</label>
+                                <input name="upcoming" type="radio" value="1"><label for="upcoming">Upcoming</label>
+                                <input name="auditions" type="radio" value="1"><label for="auditions">Auditions</label>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
-    </div>
-
-
-    <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-        <h2 id="modalTitle">Add New Performance</h2>
-        <p class="lead">Your couch.  It is mine.</p>
-        <div class="medium-12 columns">
-            <h4>Add New Performance</h4>
-            <div class="panel">
-                <form method="post" action="{{url('/admin/')}}" id="addPerformance">
-                    <div class="row">
-                        <div class="small-12 columns">
-                            <div class="row">
-                                <div class="small-3 columns">
-                                    <label for="right-label" class="right inline">Performance Title</label>
-                                </div>
-                                <div class="small-9 columns">
-                                    <input type="text" name="title" id="right-label" placeholder="Performance Title">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="small-12 columns">
-                            <div class="row">
-                                <div class="small-3 columns">
-                                    <label for="right-label" class="right inline">Performance Teaser</label>
-                                </div>
-                                <div class="small-9 columns">
-                                    <input type="text" name="teaser" id="right-label" placeholder="Performance Title">
-                                </div>
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="small-7 small-offset-3 columns">
+                        <button class="button red" id="addPerformance" value="submit" name="submit">Submit</button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
         <a class="close-reveal-modal" aria-label="Close">&#215;</a>
     </div>

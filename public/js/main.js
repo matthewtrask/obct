@@ -97,6 +97,41 @@ $(document).ready(function(){
         });
     });
 
+    $('button.button#addPerformance').on('click', function() {
+        var data = $('form#addPerformance').serialize();
+        console.log(data);
+        $.ajax({
+            url: '/admin/newPerformance',
+            data: data,
+            method: post,
+            cache: false,
+            async: true,
+            success: function() {
+                console.log(data);
+            },
+            failure: function() {
+
+            }
+        });
+    });
+
+    $('button.button.deleteSchool').click(function(){
+        var id = (this.id);
+        var data = id;
+        $.ajax({
+            url: '/admin/schools/delete/'+id,
+            type: 'post',
+            data: data,
+            cache: false,
+            async: true,
+            success: function(data) {
+            },
+            failure: function(data) {
+
+            }
+        });
+    });
+
 
 
 

@@ -36,6 +36,7 @@
                         </div>
                         <div class="small-3 columns">
                             <button class="button green"><a href="#">Edit</a></button>
+                            <button class="button deleteSchool" name="{{$school->school}}" value="{{$school->id}}" id="{{$school->id}}"><a href="#">Delete</a></button>
                         </div>
                     </div>
                 </div>
@@ -86,5 +87,9 @@
         </form>
         <a class="close-reveal-modal" aria-label="Close">&#215;</a>
     </div>
+
+    <script>
+
+    </script>
 
 @endsection
