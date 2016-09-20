@@ -5,19 +5,17 @@
 @section('content')
 
     <div class="row" id="dashboard">
-        <ul class="breadcrumb">
-            <li>Users</li>
-        </ul>
 
         <div class="small-8 columns">
             <div class="panel">
-                <h3>Welcome, {{$name}}</h3><hr>
+                <h3>Welcome, {{$user->name}}</h3><hr>
                 <p>Current Schedule</p>
             </div>
         </div>
         <div class="small-4 columns">
             <div class="panel">
                 <h3>Annoucements</h3><hr>
+                <p>Look here for annoucements from OBCT</p>
             </div>
         </div>
     </div>

@@ -35,8 +35,12 @@
                             <p>{{$school->details}}</p>
                         </div>
                         <div class="small-3 columns">
-                            <button class="button green"><a href="#">Edit</a></button>
-                            <button class="button deleteSchool" name="{{$school->school}}" value="{{$school->id}}" id="{{$school->id}}"><a href="#">Delete</a></button>
+                            <button class="button green"><a data-reveal-id="editSchool{{$school->id}}" href="#">Edit</a></button>
+                            <form id=deleteSchool" method="post" action="">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <button class="button deleteSchool" name="{{$school->school}}" value="{{$school->id}}" id="{{$school->id}}"><a href="#">Delete</a></button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -47,6 +51,50 @@
     <div id="school" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
         <h2 id="modalTitle" class="text-center">Add a new school.</h2>
         <form method="post" id="addSchool" action="{{url('/admin/schools')}}">
+            <div class="row">
+                <div class="small-12 columns">
+                    <div class="row">
+                        <div class="small-3 columns">
+                            <label for="right-label" class="right inline">School Name</label>
+                        </div>
+                        <div class="small-9 columns">
+                            <input type="text" name="school" id="right-label" placeholder="School Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="small-12 columns">
+                    <div class="row">
+                        <div class="small-3 columns">
+                            <label for="right-label" class="right inline">School Location</label>
+                        </div>
+                        <div class="small-9 columns">
+                            <input type="text" name="location" id="right-label" placeholder="School Location">
+                        </div>
+                    </div>
+                </div>
+                <div class="small-12 columns">
+                    <div class="row">
+                        <div class="small-3 columns">
+                            <label for="right-label" class="right inline">School Details</label>
+                        </div>
+                        <div class="small-9 columns">
+                            <textarea rows="4" name="details" id="right-label" placeholder="School Details"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-8 small-offset-3 columns">
+                    <button class="button" id="addSchool" value="submit" name="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+
+    <div id="editSchool{{$school->id}}" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+        <h2 id="modalTitle" class="text-center">Add a new school.</h2>
+        <form method="post" id="addSchool" action="{{url('/admin/schools/edit')}}">
             <div class="row">
                 <div class="small-12 columns">
                     <div class="row">

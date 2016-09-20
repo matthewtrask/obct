@@ -45,6 +45,7 @@ Route::group(['middleware' => 'adminAuth'], function () {
     Route::get('/admin', 'Admin\AdminController@index');
 
     Route::post('/admin/whatsNew', 'Admin\AdminController@newUpdate');
+    Route::post('/admin/alert', 'Admin\AdminController@newAlert');
 
     Route::get('/admin/performances', 'Admin\PerformanceController@index');
     Route::post('/admin/newPerformance', 'Admin\PerformanceController@addNewPerformance');
@@ -52,7 +53,7 @@ Route::group(['middleware' => 'adminAuth'], function () {
     Route::get('/admin/schools', 'Admin\SchoolsController@index');
     Route::post('/admin/schools', 'Admin\SchoolsController@add');
     Route::put('/admin/schools/{id}', 'Admin\SchoolsController@edit');
-    Route::post('/admin/schools/delete/{id}', 'Admin\SchoolsController@delete');
+    Route::delete('/admin/schools', 'Admin\SchoolsController@delete');
 
     Route::get('/admin/cast', 'Admin\CastController@cast');
     Route::post('/admin/cast', 'Admin\CastController@addCast');
@@ -64,13 +65,11 @@ Route::group(['middleware' => ['web']], function () {
 
     // User
     Route::get('/user', 'Users\DashboardController@index');
-    Route::get('/user/{id}/edit', 'Users\UsersController@editInfo');
+    Route::get('/user/{id}/edit', 'Users\DashboardController@editInfo');
 
 
     Route::get('/user/{id}/signup', 'Users\StudentController@registerStudent');
     Route::post('/user/{id}/singup/add', 'Users\StudentController@addStudent'); 
     Route::get('/user/{id}/view', 'Users\StudentController@viewInfo');
-    Route::get('/user/{id}/register', 'Users\RegisterController@index');
-
 
 });

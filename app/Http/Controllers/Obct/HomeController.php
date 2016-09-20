@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Obct;
 
 use App\Http\Controllers\Controller;
+
+use App\Alert;
 use App\WhatsNew;
 use App\CurrentShow;
 
@@ -18,10 +20,16 @@ class HomeController extends Controller
      */
     private $currentShow;
 
-    public function __construct(WhatsNew $whatsNew, CurrentShow $currentShow)
+    /**
+     * @var Alert
+     */
+    private $alert;
+
+    public function __construct(WhatsNew $whatsNew, CurrentShow $currentShow, Alert $alert)
     {
         $this->whatsNew = $whatsNew;
         $this->currentShow= $currentShow;
+        $this->alert = $alert;
     }
 
     public function home()
@@ -35,9 +43,14 @@ class HomeController extends Controller
                 ->where('active', 1)
                 ->get();
 
+        $alert = $this->alert
+                ->where('active', 1)
+                ->get();
+
         return view('obct.home', [
             'whatsNew' => $whatsNew,
-            'currentShow' => $currentShow
+            'currentShow' => $currentShow,
+            'alerts' => $alert
         ]);
     }
 }

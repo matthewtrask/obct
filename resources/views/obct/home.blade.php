@@ -3,11 +3,22 @@
 @section('title', 'Home')
 
 @section('content')
+
+
     <div class="image" id="hero">
         <img src="img/little-mermaid-play.jpg" alt="OBCT Mermaid Group">
         <img src="img/green-logo.png" alt="Off Broadway Logo">
         <img src="img/island-show.jpg" alt="OBCT Island Show">
     </div>
+    @foreach($alerts as $alert)
+        @if($alert->active == 1)
+            <div data-alert class="alert-box" id="alert">
+                <h4>{{$alert->alert}}</h4>
+                <a href="#" class="close">&times;</a>
+            </div>
+        @endif
+    @endforeach
+
     <div class="panel" id="mission">
         <h2 class="text-center">Our Mission</h2>
         <p>We aim to connect children with their passions. We provide a safe place for children to explore their creative side in acting, singing and dancing.</p>

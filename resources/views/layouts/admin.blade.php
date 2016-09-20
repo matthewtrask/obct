@@ -62,6 +62,7 @@
         <section class="top-bar-section">
             <!-- Right Nav Section -->
             <ul class="right">
+                <li><a href="{{url('/admin')}}">Admin</a></li>
                 <li><a href="{{url('/logout')}}">Logout</a></li>
             </ul>
         </section>

@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use GuzzleHttp\Client;
-
+use App\Alert;
 use App\Classes;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\WhatsNew;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -30,21 +28,22 @@ class AdminController extends Controller
     private $classes;
 
     /**
-     * @var Client
+     * @var Alert
      */
-    private $client;
+    private $alert;
 
     /**
      * Create a new controller instance.
      *
      */
-    public function __construct(User $user, WhatsNew $whatsNew, Classes $classes)
+    public function __construct(User $user, WhatsNew $whatsNew, Classes $classes, Alert $alert)
     {
         $this->middleware('auth');
 
         $this->user = $user;
         $this->whatsNew = $whatsNew;
         $this->classes = $classes;
+        $this->alert = $alert;
     }
 
     /**
@@ -75,5 +74,23 @@ class AdminController extends Controller
 
         return redirect('/admin')->with('updated', 'The Whats New Section was updated');
 
+    }
+
+    public function newAlert(Request $request)
+    {
+        $this->alert->where('active', 1)->update(['active' => 0]);
+
+        $alert = $this->alert;
+        $alert->alert = $request->alert;
+        $alert->active = 1;
+
+        $alert->save();
+
+        return redirect('/admin')->with('alert-updated', 'The alert has been added');
+    }
+
+    public function updateAlert(Request $request)
+    {
+        
     }
 }

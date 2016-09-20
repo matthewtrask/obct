@@ -3,35 +3,32 @@
 @section('title', 'Admin')
 
 @section('content')
-        <div class="small-3 columns">
+        <div class="small-6 columns" id="sidenav">
+            @if (session('alert-updated'))
+                <div data-alert class="alert-box">
+                    {{ session('alert-updated') }}
+                    <a href="#" class="close">&times;</a>
+                </div>
+            @endif
             <div class="panel">
-                <h2>Pages</h2>
-            </div>
-            <ul class="side-nav">
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 2</a></li>
-                <li><a href="#">Link 3</a></li>
-                <li><a href="#">Link 4</a></li>
-            </ul>
-        </div>
-        <div class="small-3 columns" id="sidenav">
-            <div class="panel">
-                <h2>Stats</h2>
+                <h2>Alert</h2>
             </div>
             <div class="panel">
-                <p><i class="fa fa-envelope-o" aria-hidden="true"></i> Messages: #</p>
-            </div>
-            <div class="panel">
-                <p><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook: #</p>
-            </div>
-            <div class="panel">
-                <p><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter: #</p>
-            </div>
-            <div class="panel">
-                <p><i class="fa fa-users" aria-hidden="true"></i> Registered Students: #</p>
-            </div>
-            <div class="panel">
-                <p><i class="fa fa-graduation-cap" aria-hidden="true"></i> Classes: {{$classes}}</p>
+                <form method="POST" action="{{url('/admin/alert')}}" id="alert">
+                    {!! csrf_field() !!}
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <label>Title
+                                <input type="text" name="alert" placeholder="Message" />
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="large-4 columns">
+                            <button class="button" type="submit" id="alert">Submit</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="small-6 columns" id="mainnav">

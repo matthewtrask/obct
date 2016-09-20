@@ -12,6 +12,8 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Students;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
@@ -33,8 +35,10 @@ class DashboardController extends Controller
         
     }
 
-    public function index($id)
+    public function index()
     {
+        $id = Auth::user()->id;
+
         $user = $this->user->findOrFail($id);
 
         $user_id = $id;
@@ -44,8 +48,7 @@ class DashboardController extends Controller
 
         return view('users.dashboard',
             [
-                'name' => $user->name,
-                'email' => $user->email,
+                'user' => $user,
                 'student' => $students
 
             ]

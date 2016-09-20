@@ -87,6 +87,6 @@ class PerformanceController extends Controller
 
     public function archivePerformance(Request $request)
     {
-
+        
     }
 }

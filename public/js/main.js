@@ -79,6 +79,24 @@ $(document).ready(function(){
         });
     });
 
+    $('button.button#alert').on('click', function(){
+        var data = $('form#alert').serialize();
+        console.log(data);
+        $.ajax({
+            url: '/admin/alert',
+            data: data,
+            method: 'POST',
+            cache: false,
+            async: true,
+            success: function() {
+                console.log(data);
+            },
+            failure: function() {
+
+            }
+        });
+    });
+
     $('button.button#addSchool').on('click', function() {
         var data = $('form#addSchool').serialize();
         console.log(data);
@@ -116,17 +134,17 @@ $(document).ready(function(){
     });
 
     $('button.button.deleteSchool').click(function(){
-        var id = (this.id);
-        var data = id;
+        var data = (this.id);
         $.ajax({
-            url: '/admin/schools/delete/'+id,
+            url: '/admin/schools',
             type: 'post',
-            data: data,
+            data: {  data:data ,_method:"DELETE"},
             cache: false,
             async: true,
             success: function(data) {
             },
             failure: function(data) {
+                console.log(data);
 
             }
         });

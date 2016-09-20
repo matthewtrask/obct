@@ -42,9 +42,17 @@ class SchoolsController extends Controller
 
     }
 
-    public function edit($school_id)
+    public function edit(Request $request, $school_id)
     {
+        $school = $this->schools;
 
+        $school->school = $request->school;
+        $school->location = $request->location;
+        $school->details = $request->details;
+
+        $school->save($school_id);
+
+        return redirect('/admin/schools')->with('updated', 'School has been edited!');
     }
 
     public function delete($school_id)

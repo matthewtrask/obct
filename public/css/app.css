@@ -42,7 +42,7 @@ div#main {
 div.logo {
   margin-bottom: 5%; }
 
-div#mission {
+div#mission, div#alert {
   margin-top: 5%; }
 
 div#sidebar button.button.show {

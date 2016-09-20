@@ -40,14 +40,16 @@
 <body>
 <!-- Facebook Script -->
 <div id="fb-root"></div>
+<div id="fb-root"></div>
 <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1158671784161005";
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=1158671784161005";
         fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+
 
 <div class="fixed">
     <nav class="top-bar" data-topbar role="navigation">
@@ -94,12 +96,6 @@
     </nav>
 </div>
 <div class="row" id="main">
-    <div class="small-12 columns">
-        <div data-alert class="alert-box alert">
-            <h4>Class schedule for  the Fall 2016 session is now open. Click <a href="{{url('/classes')}}">here</a> to see!</h4>
-            <a href="#" class="close">&times;</a>
-        </div>
-    </div>
     <div class="small-12 medium-9 columns">
         @yield('content')
     </div>
@@ -121,16 +117,12 @@
             @endforeach
         </div>
         <div class="panel">
-            <h3>Summer Sessions</h3>
-            <hr>
-            <button class="button success expand"><a href="summer">Information Here</a></button>
-        </div>
-        <div class="panel">
             <h3>Contact</h3>
             <hr>
             <button class="button message expand"><a href="contact">Contact Us</a></button>
         </div>
-        <div class="fb-page" data-href="https://www.facebook.com/offbroadwaydancetheater/?fref=ts" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/offbroadwaydancetheater/?fref=ts"><a href="https://www.facebook.com/offbroadwaydancetheater/?fref=ts">Off Broadway Children&#039;s Theatre</a></blockquote></div></div>
+        <div class="fb-page" data-href="https://www.facebook.com/offbroadwaydancetheater/?fref=ts" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/offbroadwaydancetheater/?fref=ts" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/offbroadwaydancetheater/?fref=ts">Off Broadway Children&#039;s Theatre</a></blockquote></div>
+        <div class="fb-follow" data-href="https://www.facebook.com/offbroadwaydancetheater/?fref=ts" data-layout="standard" data-size="small" data-show-faces="true"></div>
     </div>
     </div>
 </div>
@@ -155,7 +147,6 @@
                     $fromYear = 2000;
                     $thisYear = (int)date('Y');
                     echo $fromYear . (($fromYear != $thisYear) ? '-' . $thisYear : '');?> Off Broadway Children's Theatre.</p>
-                <!--                <p class="text-center">Site Visitors: --><?php //include('counter.php'); ?><!--</p>-->
             </div>
         </div>
     </div>
