@@ -31,6 +31,7 @@ class PerformanceController extends Controller
             ->where('active', 1)
             ->orWhere('upcoming', 1)
             ->orWhere('auditions', 1)
+            ->orWhere('past', 1)
             ->get();
 
         return view('admin.performance',
@@ -42,7 +43,7 @@ class PerformanceController extends Controller
 
     public function addNewPerformance(Request $request)
     {
-        var_dump($request->upcoming);
+        $this->performance->where('active', 1)->update(['active' => 0, 'past' => 1]);
 
         $performance = $this->performance;
         $performance->title = $request->title;
@@ -52,7 +53,16 @@ class PerformanceController extends Controller
         $performance->price = $request->price;
         $performance->link = $request->link;
         $performance->cast_page = '/cast';
-        $performance->show_image = base64_encode($request->file('image'));
+        $image = $request->file('image');
+
+        if(!$image->isValid()){
+            return "<p>No image was uploaded.</p>";
+        }
+
+        $data = file_get_contents($image);
+
+        $performance->show_image = base64_encode($data);
+
 
         if(isset($request->active)){
             $performance->active = $request->active;

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Alert;
 use App\WhatsNew;
 use App\CurrentShow;
+use App\Performance;
 
 class HomeController extends Controller
 {
@@ -25,11 +26,17 @@ class HomeController extends Controller
      */
     private $alert;
 
-    public function __construct(WhatsNew $whatsNew, CurrentShow $currentShow, Alert $alert)
+    /**
+     * @var Performance
+     */
+    private $performance;
+
+    public function __construct(WhatsNew $whatsNew, CurrentShow $currentShow, Alert $alert, Performance $performance)
     {
         $this->whatsNew = $whatsNew;
         $this->currentShow= $currentShow;
         $this->alert = $alert;
+        $this->performance = $performance;
     }
 
     public function home()
@@ -43,6 +50,10 @@ class HomeController extends Controller
                 ->where('active', 1)
                 ->get();
 
+        $performance = $this->performance
+                ->where('active', 1)
+                ->get();
+
         $alert = $this->alert
                 ->where('active', 1)
                 ->get();
@@ -50,6 +61,7 @@ class HomeController extends Controller
         return view('obct.home', [
             'whatsNew' => $whatsNew,
             'currentShow' => $currentShow,
+            'performances' => $performance,
             'alerts' => $alert
         ]);
     }

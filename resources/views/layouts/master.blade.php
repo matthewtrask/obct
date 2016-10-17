@@ -78,9 +78,7 @@
                     <a href="#">Shows</a>
                     <ul class="dropdown">
                         <li><a href="{{ url('/currentshow') }}">Current Show</a></li>
-                        {{--<li><a href="{{ url('/upcomingshow') }}">Upcoming Show</a></li>--}}
                         <li><a href="{{ url('/auditions') }}">Auditions</a></li>
-                        {{--<li><a href="questions">Questions</a></li>--}}
                     </ul>
                 </li>
                 <li class="has-dropdown">
@@ -105,13 +103,13 @@
         </div>
         <div class="panel">
             <h3>Current Show</h3><hr>
-            @foreach($currentShow as $show)
-                <h4>{{$show->show_title}}</h4>
-                <img src="data:image/jpg;base64,{{$show->show_image}}">
-                @if($show->link !== '')
-                    <button class="button expand show"><a href="{{$show->link}}">Buy Tickets</a></button>
+            @foreach($performances as $performance)
+                <h4>{{$performance->title}}</h4>
+                <img src="data:image/jpg;base64,{{$performance->show_image}}">
+                @if($performance->link !== '')
+                    <button class="button expand show"><a href="{{$performance->link}}">Buy Tickets</a></button>
                 @endif
-                @if($show->link == '')
+                @if($performance->link == '')
                     <p><b>Coming Soon!</b></p>
                 @endif
             @endforeach
@@ -153,7 +151,8 @@
 </footer>
 
 <script src="{{url('/')}}/bower_components/foundation/js/foundation.min.js"></script>
-<script src="{{url('/')}}/js/main.js">
+<script src="{{url('/')}}/js/main.js"></script>
+<script>
     $(document).foundation();
 </script>
 

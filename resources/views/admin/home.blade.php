@@ -30,6 +30,19 @@
                     </div>
                 </form>
             </div>
+            <div class="panel">
+                @foreach($alert as $alerts)
+                    <div class="row">
+                        <h4>Current Alert</h4><hr><br>
+                        <div class="small-9 columns">
+                            <p>{{$alerts->alert}}</p>
+                        </div>
+                        <div class="small-3 columns">
+                            <button class="button" value="{{$alerts->id}}" id="remove">Remove</button>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
         <div class="small-6 columns" id="mainnav">
             @if (session('updated'))

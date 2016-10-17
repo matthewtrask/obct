@@ -46,6 +46,7 @@ Route::group(['middleware' => 'adminAuth'], function () {
 
     Route::post('/admin/whatsNew', 'Admin\AdminController@newUpdate');
     Route::post('/admin/alert', 'Admin\AdminController@newAlert');
+    Route::post('/admin/removeAlert', 'Admin\AdminController@removeAlert');
 
     Route::get('/admin/performances', 'Admin\PerformanceController@index');
     Route::post('/admin/newPerformance', 'Admin\PerformanceController@addNewPerformance');

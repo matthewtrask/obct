@@ -55,9 +55,12 @@ class AdminController extends Controller
     {
         $classes = $this->classes->get();
 
+        $alert = $this->alert->where('active', 1)->get();
+
         $classCount = count($classes);
         return view('admin.home', [
-            'classes' => $classCount
+            'classes' => $classCount,
+            'alert' => $alert
         ]);
     }
 
@@ -89,8 +92,14 @@ class AdminController extends Controller
         return redirect('/admin')->with('alert-updated', 'The alert has been added');
     }
 
-    public function updateAlert(Request $request)
+    public function removeAlert(Request $request)
     {
-        
+        $alert = $this->alert;
+        $alert->id = $request->id;
+        $alert->active = 0;
+
+        $alert->save();
+
+        return redirect('/admin')->with('alert-updated', 'The alert has been removed');
     }
 }

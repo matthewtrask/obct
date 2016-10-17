@@ -6,24 +6,26 @@
 
     <h2>Current Show</h2><hr>
 
-    @foreach($currentShow as $show)
+    @foreach($performances as $performance)
+        @if($performance->active == 1)
         <div class="panel">
             <div class="row">
                 <div class="small-6 columns">
-                    <h3>{{$show->show_title}}</h3>
+                    <h3>{{$performance->title}}</h3>
                     <ul>
-                        <li>Dates: {{$show->dates}}</li>
-                        <li>Price: ${{$show->price}}</li>
+                        <li>Dates: {{$performance->dates}}</li>
+                        <li>Price: ${{$performance->price}}</li>
                     </ul>
-                    <p>{{$show->description}}</p>
-                    <a href="{{$show->link}}"><button class="button show">Buy Now!</button></a>
+                    <p>{{$performance->description}}</p>
+                    <a href="{{$performance->link}}"><button class="button show">Buy Now!</button></a>
                 </div>
                 <div class="small-6 columns">
-                    <img src="data:image/jpg;base64,{{$show->show_image}}">
+                    <img src="data:image/jpg;base64,{{$performance->show_image}}">
                 </div>
             </div>
 
         </div>
+        @endif
     @endforeach
 
     <hr>

@@ -28,17 +28,23 @@
                         <div class="small-3 columns">
                             @if($performance->active == 1)
                                 <p><span style="margin-left:-20%" class="label alert">Current Show</span></p>
-                            @else
+                            @endif
+                            @if($performance->upcoming == 1)
                                 <p><span style="margin-left:-20%" class="label warning">Upcoming</span></p>
                             @endif
                             @if($performance->auditions == 1)
                                 <p><span style="margin-left:-20%" class="label success">Auditions</span></p>
                             @endif
+                            @if($performance->past == 1)
+                                <p><span style="margin-left:-20%" class="label info">Past</span></p>
+                            @endif
                         </div>
                     </div>
                     <p>{{$performance->dates}}</p>
                     <p>{{$performance->link}}</p>
-                    <img src="data:image/jpg;base64,{{$performance->show_image}}">
+                    <div id="perfId">
+                        <img src="data:image/jpg;base64,{{$performance->show_image}}">
+                    </div>
                 </div>
             @endforeach
         </div>

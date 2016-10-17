@@ -150,7 +150,21 @@ $(document).ready(function(){
         });
     });
 
+    $('button.button#remove').on('click', function(){
+        var value = $(this).attr('value');
+        $.ajax({
+            url: '/admin/removeAlert',
+            method: "POST",
+            data: value,
+            async: true,
+            cache: false,
+            success: function(){
 
+            },
+            failure: function(){
 
+            }
+        })
+    })
 
 });
