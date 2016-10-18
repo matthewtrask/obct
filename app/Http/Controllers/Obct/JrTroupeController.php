@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Obct;
 
 use App\Http\Controllers\Controller;
+use App\Performance;
 use App\troupeInfo;
 use App\JrTroupeAbout;
 use App\CurrentShow;
@@ -25,14 +26,23 @@ class JrTroupeController extends Controller
     private $troupeInfo;
 
     /**
+     * @var Performance
+     */
+    private $performance;
+
+    /**
      * @param JrTroupeAbout $jrTroupeInfo
      * @param CurrentShow $currentShow
      */
-    public function __construct(JrTroupeAbout $jrTroupeInfo, CurrentShow $currentShow, troupeInfo $troupeInfo)
+    public function __construct(JrTroupeAbout $jrTroupeInfo,
+                                CurrentShow $currentShow,
+                                troupeInfo $troupeInfo,
+                                Performance $performance)
     {
         $this->jrTroupeAbout = $jrTroupeInfo;
         $this->currentShow   = $currentShow;
         $this->troupeInfo    = $troupeInfo;
+        $this->performance   = $performance;
     }
 
     /**
@@ -47,11 +57,16 @@ class JrTroupeController extends Controller
 
         $troupeInfo = $this->troupeInfo->all();
 
+        $performance = $this->performance
+                            ->where('active', 1)
+                            ->get();
+
         return view('obct.jrtroupe',
                     [
-                        'currentShow' => $currentShow,
-                        'jrTroupe'    => $jrTroupe,
-                        'troupeInfo'  => $troupeInfo
+                        'currentShow'  => $currentShow,
+                        'jrTroupe'     => $jrTroupe,
+                        'troupeInfo'   => $troupeInfo,
+                        'performances' => $performance
                     ]
         );
     }
