@@ -92,7 +92,8 @@ class PerformanceController extends Controller
 
     public function editPerformance(Request $request)
     {
-
+        $showId = $request->id;
+        dd($showId);
     }
 
     public function archivePerformance(Request $request)

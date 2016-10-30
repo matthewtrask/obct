@@ -20,32 +20,152 @@
         <div class="medium-12 columns">
             <h4>Current Show Listing</h4>
             @foreach($performances as $performance)
-                <div class="panel">
-                    <div class="row">
-                        <div class="small-9 columns">
-                            <h4 id="title">{{$performance->title}}</h4>
+                @if($performance->active == 1)
+                    <div class="panel">
+                        <div class="row">
+                            <div class="small-4 columns">
+                                <h4 id="title">{{$performance->title}}</h4>
+                            </div>
+                            <div class="small-2 columns">
+                                @if($performance->active == 1)
+                                    <p><span style="margin-left:-20%" class="label alert">Current Show</span></p>
+                                @endif
+                                @if($performance->upcoming == 1)
+                                    <p><span style="margin-left:-20%" class="label warning">Upcoming</span></p>
+                                @endif
+                                @if($performance->auditions == 1)
+                                    <p><span style="margin-left:-20%" class="label success">Auditions</span></p>
+                                @endif
+                                @if($performance->past == 1)
+                                    <p><span style="margin-left:-20%" class="label info">Past</span></p>
+                                @endif
+                            </div>
+                            <div class="small-2 columns">
+
+                            </div>
+                            <div class="small-4 columns" id="actions">
+                                <button class="red button" id="edit" value="{{$performance->id}}">Edit</button>
+                                <button class="gray button" id="delete" value="{{$performance->id}}">Delete</button>
+                            </div>
+
+
                         </div>
-                        <div class="small-3 columns">
-                            @if($performance->active == 1)
-                                <p><span style="margin-left:-20%" class="label alert">Current Show</span></p>
-                            @endif
-                            @if($performance->upcoming == 1)
-                                <p><span style="margin-left:-20%" class="label warning">Upcoming</span></p>
-                            @endif
-                            @if($performance->auditions == 1)
-                                <p><span style="margin-left:-20%" class="label success">Auditions</span></p>
-                            @endif
-                            @if($performance->past == 1)
-                                <p><span style="margin-left:-20%" class="label info">Past</span></p>
-                            @endif
+                        <p>{{$performance->dates}}</p>
+                        <p><a href="{{$performance->link}}">Tickets</a></p>
+                        <div id="perfId">
+                            <img src="data:image/jpg;base64,{{$performance->show_image}}">
                         </div>
                     </div>
-                    <p>{{$performance->dates}}</p>
-                    <p>{{$performance->link}}</p>
-                    <div id="perfId">
-                        <img src="data:image/jpg;base64,{{$performance->show_image}}">
-                    </div>
-                </div>
+                    @elseif($performance->upcoming == 1)
+                        <div class="panel">
+                            <div class="row">
+                                <div class="small-4 columns">
+                                    <h4 id="title">{{$performance->title}}</h4>
+                                </div>
+                                <div class="small-2 columns">
+                                    @if($performance->active == 1)
+                                        <p><span style="margin-left:-20%" class="label alert">Current Show</span></p>
+                                    @endif
+                                    @if($performance->upcoming == 1)
+                                        <p><span style="margin-left:-20%" class="label warning">Upcoming</span></p>
+                                    @endif
+                                    @if($performance->auditions == 1)
+                                        <p><span style="margin-left:-20%" class="label success">Auditions</span></p>
+                                    @endif
+                                    @if($performance->past == 1)
+                                        <p><span style="margin-left:-20%" class="label info">Past</span></p>
+                                    @endif
+                                </div>
+                                <div class="small-2 columns">
+
+                                </div>
+                                <div class="small-4 columns" id="actions">
+                                    <button class="red button" id="edit" value="{{$performance->id}}">Edit</button>
+                                    <button class="gray button" id="delete" value="{{$performance->id}}">Delete</button>
+                                </div>
+
+
+                            </div>
+                            <p>{{$performance->dates}}</p>
+                            <p><a href="{{$performance->link}}">Tickets</a></p>
+                            <div id="perfId">
+                                <img src="data:image/jpg;base64,{{$performance->show_image}}">
+                            </div>
+                        </div>
+                    @elseif($performance->auditions == 1)
+                        <div class="panel">
+                            <div class="row">
+                                <div class="small-4 columns">
+                                    <h4 id="title">{{$performance->title}}</h4>
+                                </div>
+                                <div class="small-2 columns">
+                                    @if($performance->active == 1)
+                                        <p><span style="margin-left:-20%" class="label alert">Current Show</span></p>
+                                    @endif
+                                    @if($performance->upcoming == 1)
+                                        <p><span style="margin-left:-20%" class="label warning">Upcoming</span></p>
+                                    @endif
+                                    @if($performance->auditions == 1)
+                                        <p><span style="margin-left:-20%" class="label success">Auditions</span></p>
+                                    @endif
+                                    @if($performance->past == 1)
+                                        <p><span style="margin-left:-20%" class="label info">Past</span></p>
+                                    @endif
+                                </div>
+                                <div class="small-2 columns">
+
+                                </div>
+                                <div class="small-4 columns" id="actions">
+                                    <button class="red button" id="edit" value="{{$performance->id}}">Edit</button>
+                                    <button class="gray button" id="delete" value="{{$performance->id}}">Delete</button>
+                                </div>
+
+
+                            </div>
+                            <p>{{$performance->dates}}</p>
+                            <p><a href="{{$performance->link}}">Tickets</a></p>
+                            <div id="perfId">
+                                <img src="data:image/jpg;base64,{{$performance->show_image}}">
+                            </div>
+                        </div>
+                    @endif
+                    @if($performance->past == 1)
+                        <div class="panel">
+                            <div class="row">
+                                <div class="small-4 columns">
+                                    <h4 id="title">{{$performance->title}}</h4>
+                                </div>
+                                <div class="small-2 columns">
+                                    @if($performance->active == 1)
+                                        <p><span style="margin-left:-20%" class="label alert">Current Show</span></p>
+                                    @endif
+                                    @if($performance->upcoming == 1)
+                                        <p><span style="margin-left:-20%" class="label warning">Upcoming</span></p>
+                                    @endif
+                                    @if($performance->auditions == 1)
+                                        <p><span style="margin-left:-20%" class="label success">Auditions</span></p>
+                                    @endif
+                                    @if($performance->past == 1)
+                                        <p><span style="margin-left:-20%" class="label info">Past</span></p>
+                                    @endif
+                                </div>
+                                <div class="small-2 columns">
+
+                                </div>
+                                <div class="small-4 columns" id="actions">
+                                    <button class="red button" id="edit" value="{{$performance->id}}">Edit</button>
+                                    <button class="gray button" id="delete" value="{{$performance->id}}">Delete</button>
+                                </div>
+
+
+                            </div>
+                            <p>{{$performance->dates}}</p>
+                            <p><a href="{{$performance->link}}">Tickets</a></p>
+                            <div id="perfId">
+                                <img src="data:image/jpg;base64,{{$performance->show_image}}">
+                            </div>
+                        </div>
+                    @endif
             @endforeach
         </div>
     </div>

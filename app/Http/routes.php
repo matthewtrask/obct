@@ -50,6 +50,7 @@ Route::group(['middleware' => 'adminAuth'], function () {
 
     Route::get('/admin/performances', 'Admin\PerformanceController@index');
     Route::post('/admin/newPerformance', 'Admin\PerformanceController@addNewPerformance');
+    Route::post('/admin/editPerformance', 'Admin\PerformanceController@editPerformance');
 
     Route::get('/admin/schools', 'Admin\SchoolsController@index');
     Route::post('/admin/schools', 'Admin\SchoolsController@add');
