@@ -11,7 +11,6 @@
         "omnipay/paypal": "~2.0",
         "doctrine/dbal": "2.5.4",
         "guzzlehttp/guzzle": "~5.3|~6.0",
-        "chromabits/foundation-pagination": "*",
         "socialiteproviders/paypal": "*"
     },
     "require-dev": {
