@@ -64,6 +64,11 @@ class AdminController extends Controller
         ]);
     }
 
+    public function uploadImages(Request $request)
+    {
+
+    }
+
     public function newUpdate(Request $request)
     {
         $whatsNew = $this->whatsNew;

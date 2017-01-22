@@ -48,9 +48,17 @@ Route::group(['middleware' => 'adminAuth'], function () {
     Route::post('/admin/alert', 'Admin\AdminController@newAlert');
     Route::post('/admin/removeAlert', 'Admin\AdminController@removeAlert');
 
+    Route::get('/admin/boxoffice', 'Admin\BoxOfficeController@index');
+
     Route::get('/admin/performances', 'Admin\PerformanceController@index');
     Route::post('/admin/newPerformance', 'Admin\PerformanceController@addNewPerformance');
     Route::post('/admin/editPerformance', 'Admin\PerformanceController@editPerformance');
+    Route::post('/admin/deletePerformance', 'Admin\PerformanceController@archivePerformance');
+
+    Route::get('/admin/summer', 'Admin\SummerController@index');
+    Route::post('/admin/summer', 'Admin\SummerController@create');
+    Route::post('/admin/summer/{id}', 'Admin\SummerController@edit');
+    Route::delete('/admin/summer/{id}', '\Admin\SummerController@destroy');
 
     Route::get('/admin/schools', 'Admin\SchoolsController@index');
     Route::post('/admin/schools', 'Admin\SchoolsController@add');

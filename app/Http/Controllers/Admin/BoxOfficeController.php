@@ -1,17 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: trask
- * Date: 11/13/16
- * Time: 9:38 PM
- */
 
 namespace App\Http\Controllers\Admin;
 
-
 use App\Performance;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class BoxOfficeController
+class BoxOfficeController extends Controller
 {
     const SEAT_TOTAL = 80;
 
@@ -27,14 +22,10 @@ class BoxOfficeController
 
     public function index()
     {
-        $attendence_list = $this->performance->findOrFail();
-
-        return view('admin.boxoffice',[
-            'attendence_list' => $attendence_list
-        ]);
+        return view('admin.boxoffice');
     }
 
-    public function fetchTransaction()
+    public function fetchTransaction(Request $request)
     {
 
     }

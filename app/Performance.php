@@ -9,6 +9,8 @@ class Performance extends Model
     public $table = 'performance';
     protected $model = 'performance';
 
+    protected $dates = ['deleted_at'];
+
     protected $fillable = [
         'title',
         'teaser',
