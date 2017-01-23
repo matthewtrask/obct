@@ -133,6 +133,24 @@ $(document).ready(function(){
         });
     });
 
+    $('button.button#editPerformance').on('click', function() {
+        var data = $('form#editPerformance').serialize();
+        console.log(data);
+        $.ajax({
+            url: '/admin/editPerformance',
+            data: data,
+            method: post,
+            cache: false,
+            async: true,
+            success: function() {
+                console.log(data);
+            },
+            failure: function() {
+
+            }
+        });
+    });
+
     $('button.button.deleteSchool').click(function(){
         var data = (this.id);
         $.ajax({
@@ -165,6 +183,40 @@ $(document).ready(function(){
 
             }
         })
-    })
+    });
+
+    $('button.button#addCamp').on('click', function() {
+        var data = $('form#addCamp').serialize();
+        $.ajax({
+            url: '/admin/summer',
+            data: data,
+            method: post,
+            cache: false,
+            async: true,
+            success: function() {
+                console.log(data);
+            },
+            failure: function() {
+
+            }
+        });
+    });
+
+    $('button.button#editCamp').on('click', function() {
+        var data = $('form#editCamp').serialize();
+        $.ajax({
+            url: '/admin/summer' + data.id,
+            data: data,
+            method: post,
+            cache: false,
+            async: true,
+            success: function() {
+                console.log(data);
+            },
+            failure: function() {
+
+            }
+        });
+    });
 
 });

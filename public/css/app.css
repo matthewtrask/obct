@@ -176,10 +176,10 @@ div#cast a i.fa.fa-pencil-square {
 div#cast a i.fa.fa-times {
   color: #880000; }
 
-div.small-3.columns#addPerformance button.button.red {
+div.small-3.columns.add button.button.red {
   background-color: #fff;
   border: 1px solid #ff6047; }
-  div.small-3.columns#addPerformance button.button.red a {
+  div.small-3.columns.add button.button.red a {
     color: #ff6047; }
 
 div#perId img {

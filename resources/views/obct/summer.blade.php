@@ -9,39 +9,33 @@
         <p>{{ $info->details }}</p>
     @endforeach
 
-    <div class="alert-box">
-        <h4><b>Summer 2016 is a wrap and we had a great time- the new Summer Schedule for 2017 will be released on January 1, 2017!ter</b></h4>
+    <h4>2017 Summer Sessions</h4>
 
-    </div>
-    {{--<dl class="panel" id="summerShows">--}}
-        {{--<dt>Select:</dt>--}}
-        {{--<dd><a href="#1">Elf Jr.</a></dd>--}}
-        {{--<dd><a href="#2">Aladdin Kids</a></dd>--}}
-        {{--<dd><a href="#3">High School Musical And More</a></dd>--}}
-        {{--<dd><a href="#4">Cirque Du Off Broadway</a></dd>--}}
-    {{--</dl>--}}
+    @foreach($summer as $show)
+        <div class="row">
+            <div class="small-12 medium-12 columns">
+                <div class="panel">
+                    <div class="row">
+                        <div class="small-8 medium-8 columns">
+                            <h4> {{ $show->show_title }} </h4>
+                            <p>Camp Cost: ${{$show->cost}}</p>
+                            <p>Description: {{ $show->show_info }}</p>
+                            <img height="300px" width="300px" src="data:image/jpg;base64,{{ $show->show_image }}">
+                        </div>
+                        <div class="small-4 medium-4 columns">
+                            <p>Show Dates: {{ $show->show_dates }} </p>
+                            <p>Camp Dates: {{ $show->dates }} </p>
+                            <p>Camp Times: {{ $show->time }}</p>
+                            <button class="red button" data-reveal-id="editModal_{{$show->id}}" id="edit" value="{{$show->id}}">Edit</button>
+                            <button class="button gray" id="summer_{{ $show->id }}" value="{{ $show->id }}">Delete</button>
+                            <div id="register">
+                                <button class="button register expand"><a href="{{$show->show_link}}">Register</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 
-
-    {{--@foreach($summer as $session)--}}
-        {{--<div class="panel" id="{{$session->id}}">--}}
-            {{--<h3>{{$session->show_title}}</h3>--}}
-            {{--<div class="row">--}}
-                {{--<div class="small-6 columns">--}}
-                    {{--<div id="overflow">--}}
-                        {{--<p>{{$session->show_info}}</p>--}}
-                    {{--</div><br>--}}
-                    {{--<p><b>Ages</b>: {{$session->ages}}</p>--}}
-                    {{--<p><b>Dates</b>: {{$session->dates}}</p>--}}
-                    {{--<p><b>Times</b>: {{$session->time}}</p>--}}
-                    {{--<p><b>Cost</b>: ${{$session->cost}}</p>--}}
-                    {{--<p><b>Show Dates</b>: {{$session->show_dates}}</p>--}}
-                {{--</div>--}}
-                {{--<div class="small-6 columns" id="register">--}}
-                    {{--<img src="data:image/jpg;base64,{{$session->show_image}}"><b3r><br>--}}
-                    {{--<p>To register for a summer session:</p>--}}
-                        {{--<a href="https://app.jackrabbitclass.com/reg.asp?id=277946"><button class="button register expand">Register</button></a>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--@endforeach--}}
 @endsection

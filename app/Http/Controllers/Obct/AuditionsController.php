@@ -13,9 +13,9 @@ use App\Http\Controllers\Controller;
 class AuditionsController extends Controller
 {
     /**
-     * @var Auditions
+     * @var Performance
      */
-    private $auditions;
+    private $performance;
 
     /**
      * @var TroupeAudition
@@ -23,48 +23,30 @@ class AuditionsController extends Controller
     private $troupeAuditions;
 
     /**
-     * @var CurrentShow
-     */
-    private $currentShow;
-
-    /**
-     * @var Performance
-     */
-    private $performance;
-
-    /**
      * AuditionsController constructor.
      */
-    public function __construct(Auditions $auditions,
-                                TroupeAudition $troupeAudition,
-                                CurrentShow $currentShow,
-                                Performance $performance)
+    public function __construct(Performance $performance, TroupeAudition $troupeAudition)
     {
-        $this->auditions = $auditions;
-        $this->troupeAuditions = $troupeAudition;
-        $this->currentShow = $currentShow;
         $this->performance = $performance;
+        $this->troupeAuditions = $troupeAudition;
     }
 
     public function auditions()
     {
         $troupeAudition = $this->troupeAuditions->all();
 
-        $auditions = $this->auditions->where('audition_active', 1)
-                                     ->get();
-
-        $currentShow = CurrentShow::where('active', 1)
-                                  ->get();
+        $auditions = $this->performance
+                            ->where('auditions', 1)
+                            ->get();
 
         $performance = $this->performance
                             ->where('active', 1)
                             ->get();
 
         return view('obct.auditions', [
-            'currentShow' => $currentShow,
-            'troupeAuditions' => $troupeAudition,
             'auditions' => $auditions,
-            'performances' => $performance
+            'performances' => $performance,
+            'troupeAuditions' => $troupeAudition
         ]);
     }
 }
