@@ -23,7 +23,7 @@ class SummerController extends Controller
 
     public function summer()
     {
-        $summer = Summer::all();
+        $summer = Summer::where('active', 1)->get();
 
         $summerInfo = SummerInfo::all();
 

@@ -202,4 +202,21 @@ $(document).ready(function(){
         });
     });
 
+    $('button.button#editCamp').on('click', function() {
+        var data = $('form#editCamp').serialize();
+        $.ajax({
+            url: '/admin/summer' + data.id,
+            data: data,
+            method: post,
+            cache: false,
+            async: true,
+            success: function() {
+                console.log(data);
+            },
+            failure: function() {
+
+            }
+        });
+    });
+
 });
