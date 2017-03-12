@@ -3,13 +3,7 @@
 @section('title', 'Summer Sessions')
 
 @section('content')
-    <h2>Summer Sessions</h2>
-
-    @foreach($summerInfo as $info)
-        <p>{{ $info->details }}</p>
-    @endforeach
-
-    <h4>2017 Summer Sessions</h4>
+    <h2>2017 Summer Sessions</h2>
 
     @foreach($summer as $show)
         <div class="row">
@@ -26,8 +20,6 @@
                             <p>Show Dates: {{ $show->show_dates }} </p>
                             <p>Camp Dates: {{ $show->dates }} </p>
                             <p>Camp Times: {{ $show->time }}</p>
-                            <button class="red button" data-reveal-id="editModal_{{$show->id}}" id="edit" value="{{$show->id}}">Edit</button>
-                            <button class="button gray" id="summer_{{ $show->id }}" value="{{ $show->id }}">Delete</button>
                             <div id="register">
                                 <button class="button register expand"><a href="{{$show->show_link}}">Register</a></button>
                             </div>
