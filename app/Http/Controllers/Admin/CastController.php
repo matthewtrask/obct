@@ -11,7 +11,7 @@ namespace App\Http\Controllers\Admin;
 use App\Cast;
 use App\CurrentShow;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Request;
 
 class CastController extends Controller
 {
@@ -54,7 +54,7 @@ class CastController extends Controller
 
     public function addCast()
     {
-        $data = Input::all();
+        $data = Request::all();
 
         Cast::create([
             'show_id' => $data['show_id'],
@@ -69,7 +69,7 @@ class CastController extends Controller
 
     public function editCast()
     {
-        $data = Input::all();
+        $data = Request::all();
 
         $id = $data['cast_id'];
         $show_id = $data['show_id'];
