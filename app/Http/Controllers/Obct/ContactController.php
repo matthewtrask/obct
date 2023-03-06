@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Obct;
 
 use App\CurrentShow;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Request;
 
 class ContactController extends Controller
 {
