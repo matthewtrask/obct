@@ -14,7 +14,6 @@ class Schools extends Model
         'school',
         'location',
         'details',
-        'updated_at'
+        'updated_at',
     ];
 }
-

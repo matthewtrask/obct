@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers\Obct;
 
-use App\Performance;
-use App\BoxOffice;
-use App\Http\Requests;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Performance;
 
 class BoxOfficeController extends Controller
 {

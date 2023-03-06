@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Summer;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class SummerController extends Controller
 {
@@ -31,8 +29,8 @@ class SummerController extends Controller
         $camp->show_link = trim($request->show_link);
 
         if ($request->file('image')) {
-            if(!$request->file('image')->isValid()){
-                return "<p>No image was uploaded.</p>";
+            if (! $request->file('image')->isValid()) {
+                return '<p>No image was uploaded.</p>';
             }
 
             $data = file_get_contents($request->image);
@@ -61,8 +59,8 @@ class SummerController extends Controller
         $camp->show_link = trim($request->show_link);
 
         if ($request->file('image')) {
-            if(!$request->file('image')->isValid()){
-                return "<p>No image was uploaded.</p>";
+            if (! $request->file('image')->isValid()) {
+                return '<p>No image was uploaded.</p>';
             }
 
             $data = file_get_contents($request->image);
@@ -74,8 +72,7 @@ class SummerController extends Controller
 
         $camp->save();
 
-        return redirect('/admin/summer')->with('updated', $camp->show_title . ' has been updated!');
-
+        return redirect('/admin/summer')->with('updated', $camp->show_title.' has been updated!');
     }
 
     public function destroy(Request $request)

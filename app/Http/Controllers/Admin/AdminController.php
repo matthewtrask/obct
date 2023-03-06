@@ -7,7 +7,6 @@ use App\Classes;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\WhatsNew;
-
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -34,7 +33,6 @@ class AdminController extends Controller
 
     /**
      * Create a new controller instance.
-     *
      */
     public function __construct(User $user, WhatsNew $whatsNew, Classes $classes, Alert $alert)
     {
@@ -58,15 +56,15 @@ class AdminController extends Controller
         $alert = $this->alert->where('active', 1)->get();
 
         $classCount = count($classes);
+
         return view('admin.home', [
             'classes' => $classCount,
-            'alert' => $alert
+            'alert' => $alert,
         ]);
     }
 
     public function uploadImages(Request $request)
     {
-
     }
 
     public function newUpdate(Request $request)
@@ -81,7 +79,6 @@ class AdminController extends Controller
         $whatsNew->save();
 
         return redirect('/admin')->with('updated', 'The Whats New Section was updated');
-
     }
 
     public function newAlert(Request $request)

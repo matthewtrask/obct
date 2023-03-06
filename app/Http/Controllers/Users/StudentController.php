@@ -8,16 +8,14 @@
 
 namespace App\Http\Controllers\Users;
 
-
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Input;
 use App\Students;
-
+use Illuminate\Support\Facades\Input;
 
 class StudentController extends Controller
 {
     /**
-     * @var Students $students
+     * @var Students
      */
     private $students;
 

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     const IMAGE = '';
+
     /**
      * The attributes that are mass assignable.
      *

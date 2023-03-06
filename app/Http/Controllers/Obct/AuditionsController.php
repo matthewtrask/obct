@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers\Obct;
 
-use App\Auditions;
-use App\CurrentShow;
+use App\Http\Controllers\Controller;
 use App\Performance;
 use App\TroupeAudition;
-
-use App\Http\Controllers\Controller;
-
 
 class AuditionsController extends Controller
 {
@@ -46,7 +42,7 @@ class AuditionsController extends Controller
         return view('obct.auditions', [
             'auditions' => $auditions,
             'performances' => $performance,
-            'troupeAuditions' => $troupeAudition
+            'troupeAuditions' => $troupeAudition,
         ]);
     }
 }

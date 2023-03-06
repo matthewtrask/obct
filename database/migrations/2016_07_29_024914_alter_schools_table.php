@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class AlterSchoolsTable extends Migration
 {
@@ -12,8 +12,8 @@ class AlterSchoolsTable extends Migration
      */
     public function up()
     {
-        Schema::table('schools', function(Blueprint $table){
-           $table->timestamps();
+        Schema::table('schools', function (Blueprint $table) {
+            $table->timestamps();
         });
     }
 

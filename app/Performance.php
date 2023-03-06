@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Performance extends Model
 {
     public $table = 'performance';
+
     protected $model = 'performance';
 
     protected $dates = ['deleted_at'];
@@ -23,6 +24,6 @@ class Performance extends Model
         'active',
         'upcoming',
         'auditions',
-        'past'
+        'past',
     ];
 }

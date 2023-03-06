@@ -8,10 +8,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-
 use App\Cast;
 use App\CurrentShow;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 
 class CastController extends Controller
@@ -37,7 +36,7 @@ class CastController extends Controller
         $show = $this->currentShow->where('active', '1')->get();
 
         $cast = $this->cast
-            ->join('currentShow', function($join){
+            ->join('currentShow', function ($join) {
                 $join->on('cast.show_id', '=', 'currentShow.id');
             })
             ->where('cast.active', '1')
@@ -48,7 +47,7 @@ class CastController extends Controller
         return view('admin.cast',
             [
                 'shows' => $show,
-                'casts' => $cast
+                'casts' => $cast,
             ]
         );
     }
@@ -62,7 +61,7 @@ class CastController extends Controller
             'student' => $data['student'],
             'cast' => $data['cast'],
             'active' => 1,
-            'role' => $data['role']
+            'role' => $data['role'],
         ]);
 
         return redirect('/admin/cast')->with('status', 'Student added to cast!');
@@ -84,7 +83,7 @@ class CastController extends Controller
                         'student' => $student,
                         'show_id' => $show_id,
                         'role' => $role,
-                        'cast' => $cast
+                        'cast' => $cast,
                     ]
                 );
 
@@ -93,8 +92,5 @@ class CastController extends Controller
 
     public function removeCast()
     {
-
     }
-
-
 }

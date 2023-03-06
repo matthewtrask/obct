@@ -8,10 +8,9 @@
 
 namespace App\Http\Controllers\Obct;
 
-
-use App\Http\Controllers\Controller;
 use App\Cast;
 use App\CurrentShow;
+use App\Http\Controllers\Controller;
 
 class CastController extends Controller
 {
@@ -38,7 +37,7 @@ class CastController extends Controller
             ->get();
 
         $cast = $this->cast
-            ->join('currentShow', function($join){
+            ->join('currentShow', function ($join) {
                 $join->on('cast.show_id', '=', 'currentShow.id');
             })
             ->where('cast.active', '1')
@@ -47,7 +46,7 @@ class CastController extends Controller
         return view('obct.cast',
             [
                 'showCast' => $cast,
-                'currentShow' => $currentShow
+                'currentShow' => $currentShow,
             ]
         );
     }

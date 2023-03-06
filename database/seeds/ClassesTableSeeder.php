@@ -19,8 +19,8 @@ class ClassesTableSeeder extends Seeder
             'day' => 'Monday',
             'time' => '5:00-6:00 PM',
             'price' => '$55.00',
-            'link' => 'https://app.jackrabbitclass.com/reg.asp?id=277946'
-                                     ]);
+            'link' => 'https://app.jackrabbitclass.com/reg.asp?id=277946',
+        ]);
         Db::table('classes')->insert([
             'class_name' => 'Musical Theatre Dance',
             'teaser' => 'Come join Erin Greenway as she inspires you to connect to the basics of Musical Theater Dance. ',
@@ -29,8 +29,8 @@ class ClassesTableSeeder extends Seeder
             'day' => 'Monday',
             'time' => '6:00-7:00 PM',
             'price' => '$55.00',
-            'link' => 'https://app.jackrabbitclass.com/reg.asp?id=277946'
-                                     ]);
+            'link' => 'https://app.jackrabbitclass.com/reg.asp?id=277946',
+        ]);
         Db::table('classes')->insert([
             'class_name' => 'Junior Musical Theatre ',
             'teaser' => 'Come take a journey with Ms. Shannon and her infectious teaching style as she helps your young performer connect with the song to tell the story.',
@@ -39,8 +39,8 @@ class ClassesTableSeeder extends Seeder
             'day' => 'Tuesday',
             'time' => '5:00-6:00 PM',
             'price' => '$55.00',
-            'link' => 'https://app.jackrabbitclass.com/reg.asp?id=277946'
-                                     ]);
+            'link' => 'https://app.jackrabbitclass.com/reg.asp?id=277946',
+        ]);
         Db::table('classes')->insert([
             'class_name' => 'Intro to Musical Theatre ',
             'teaser' => 'Come take a journey with Ms. Shannon and her infectious teaching style as she helps your young performer connect with the song to tell the story.',
@@ -49,8 +49,8 @@ class ClassesTableSeeder extends Seeder
             'day' => 'Thursday',
             'time' => '5:00-6:00 PM',
             'price' => '$55.00',
-            'link' => 'https://app.jackrabbitclass.com/reg.asp?id=277946'
-                                     ]);
+            'link' => 'https://app.jackrabbitclass.com/reg.asp?id=277946',
+        ]);
         Db::table('classes')->insert([
             'class_name' => 'Advanced Acting',
             'teaser' => 'This class will connect the serious actor to challenge themselves and reach inside to convey the story though the honesty of the character.',
@@ -59,8 +59,8 @@ class ClassesTableSeeder extends Seeder
             'day' => 'Thursday',
             'time' => '6:00-7:30 PM',
             'price' => '$55.00',
-            'link' => 'https://app.jackrabbitclass.com/reg.asp?id=277946'
-                                     ]);
+            'link' => 'https://app.jackrabbitclass.com/reg.asp?id=277946',
+        ]);
         Db::table('classes')->insert([
             'class_name' => 'Advanced Musical Theatre',
             'teaser' => 'Ms. Shannon will challenge your performer to become a musical theater triple threat. ',
@@ -69,8 +69,8 @@ class ClassesTableSeeder extends Seeder
             'day' => 'Thursday',
             'time' => '6:00-7:00 PM',
             'price' => '$55.00',
-            'link' => 'https://app.jackrabbitclass.com/reg.asp?id=277946'
-                                     ]);
+            'link' => 'https://app.jackrabbitclass.com/reg.asp?id=277946',
+        ]);
         Db::table('classes')->insert([
             'class_name' => 'OBCT Apprentice Company',
             'teaser' => 'Please contact the studio for more details about our Apprentice Company.',
@@ -79,8 +79,8 @@ class ClassesTableSeeder extends Seeder
             'day' => 'Saturday',
             'time' => '9:00-12:00 PM',
             'price' => '$90.00',
-            'link' => ''
-                                     ]);
+            'link' => '',
+        ]);
         Db::table('classes')->insert([
             'class_name' => 'OBCT Troupe',
             'teaser' => 'Please contact the studio for more details about our Apprentice Company.',
@@ -89,7 +89,7 @@ class ClassesTableSeeder extends Seeder
             'day' => 'Saturday',
             'time' => '11:00-5:00 PM',
             'price' => '$110.00',
-            'link' => ''
-                                     ]);
+            'link' => '',
+        ]);
     }
 }

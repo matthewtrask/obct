@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Obct;
 
-use App\Http\Controllers\Controller;
-use App\Faq;
 use App\CurrentShow;
+use App\Faq;
+use App\Http\Controllers\Controller;
 
 class FaqController extends Controller
 {
@@ -31,10 +31,10 @@ class FaqController extends Controller
                                   ->get();
 
         return view('obct.faq',
-                    [
-                        'faq'         => $faq,
-                        'currentShow' => $currentShow
-                    ]
+            [
+                'faq' => $faq,
+                'currentShow' => $currentShow,
+            ]
         );
     }
 }

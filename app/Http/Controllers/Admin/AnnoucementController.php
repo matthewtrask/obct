@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-
 use App\Http\Controllers\Controller;
 
 class AnnoucementController extends Controller
@@ -19,11 +18,9 @@ class AnnoucementController extends Controller
 
     public function create()
     {
-
     }
 
     public function archive($id)
     {
-
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class AlterWhatsnewTable extends Migration
 {
@@ -12,8 +12,8 @@ class AlterWhatsnewTable extends Migration
      */
     public function up()
     {
-        Schema::table('whatsNew', function(Blueprint $table){
-           $table->integer('active')->after('button');
+        Schema::table('whatsNew', function (Blueprint $table) {
+            $table->integer('active')->after('button');
         });
     }
 

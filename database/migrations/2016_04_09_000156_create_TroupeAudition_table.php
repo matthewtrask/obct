@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateTroupeAuditionTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreateTroupeAuditionTable extends Migration
      */
     public function up()
     {
-        Schema::create('TroupeAudition', function(Blueprint $table){
+        Schema::create('TroupeAudition', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->string('dates');

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreatePerformancesTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreatePerformancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('performance', function(Blueprint $table){
+        Schema::create('performance', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->string('teaser');

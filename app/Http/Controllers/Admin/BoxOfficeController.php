@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Performance;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class BoxOfficeController extends Controller
 {
@@ -27,6 +27,5 @@ class BoxOfficeController extends Controller
 
     public function fetchTransaction(Request $request)
     {
-
     }
 }

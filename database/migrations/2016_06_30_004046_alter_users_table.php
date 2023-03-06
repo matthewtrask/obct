@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class AlterUsersTable extends Migration
 {
@@ -12,7 +12,7 @@ class AlterUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function(Blueprint $table){
+        Schema::table('users', function (Blueprint $table) {
             $table->string('phone')->after('email');
             $table->boolean('is_admin')->default(false)->after('remember_token');
         });

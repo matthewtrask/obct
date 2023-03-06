@@ -20,6 +20,6 @@ class Summer extends Model
         'cost',
         'show_times',
         'show_info',
-        'show_image'
+        'show_image',
     ];
 }

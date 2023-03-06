@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers\Obct;
 
-use App\Upcoming;
 use App\CurrentShow;
-use App\Performance;
-
 use App\Http\Controllers\Controller;
-
+use App\Performance;
 
 class CurrentShowController extends Controller
 {
@@ -35,11 +32,11 @@ class CurrentShowController extends Controller
                 ->get();
 
         return view('obct.currentShow',
-                    [
-                        'currentShow' => $currentShow,
-                        'upcoming'    => $upcoming,
-                        'performances' => $performance
-                    ]
+            [
+                'currentShow' => $currentShow,
+                'upcoming' => $upcoming,
+                'performances' => $performance,
+            ]
         );
     }
 }

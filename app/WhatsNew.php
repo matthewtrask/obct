@@ -9,6 +9,6 @@ class WhatsNew extends Model
     protected $table = 'whatsNew';
 
     protected $fillable = [
-      'title', 'content', 'button', 'active'
+        'title', 'content', 'button', 'active',
     ];
 }
