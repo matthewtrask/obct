@@ -24,9 +24,8 @@ class AdminAuth
      */
     public function handle($request, Closure $next)
     {
-        if($this->auth->check())
-        {
-            if($this->auth->user()->is_admin == true){
+        if ($this->auth->check()) {
+            if ($this->auth->user()->is_admin == true) {
                 return $next($request);
             }
         }

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateUserClassesTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreateUserClassesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_classes', function(Blueprint $table){
+        Schema::create('user_classes', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
             $table->integer('class_id')->unsigned();
             $table->integer('paid');

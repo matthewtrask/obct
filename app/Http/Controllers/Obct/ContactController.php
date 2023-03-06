@@ -2,33 +2,28 @@
 
 namespace App\Http\Controllers\Obct;
 
-use App\Http\Requests;
-use Illuminate\Support\Facades\Mail;
 use App\CurrentShow;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Request;
 
 class ContactController extends Controller
 {
-    /**
-     *
-     */
     public function contact()
     {
         $currentShow = CurrentShow::where('active', 1)
                                   ->get();
 
         return view('obct.contact',
-                    [
-                        'currentShow' => $currentShow
-                    ]
+            [
+                'currentShow' => $currentShow,
+            ]
         );
     }
 
     public function postContact()
     {
-        $input = Input::all('name', 'phone', 'email', 'message');
+        $input = Request::all('name', 'phone', 'email', 'message');
         $name = $input['name'];
         $phone = $input['phone'];
         $email = $input['email'];
@@ -41,7 +36,6 @@ class ContactController extends Controller
 
     public function mail($name, $phone, $email, $message)
     {
-
         $emailName = $name;
         $emailPhone = $phone;
         $emailEmail = $email;
@@ -52,7 +46,7 @@ class ContactController extends Controller
                 'name' => $emailName,
                 'phone' => $emailPhone,
                 'email' => $emailEmail,
-                'emailMessage' => $emailMessage
+                'emailMessage' => $emailMessage,
 
             ],
             function ($m) {

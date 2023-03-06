@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateSummerTables extends Migration
 {
@@ -12,7 +12,7 @@ class CreateSummerTables extends Migration
      */
     public function up()
     {
-        Schema::create('summer', function(Blueprint $table){
+        Schema::create('summer', function (Blueprint $table) {
             $table->increments('id');
             $table->string('show_title');
             $table->string('ages');

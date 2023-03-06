@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateRolesTable extends Migration
 {
@@ -12,21 +12,21 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function(Blueprint $table){
+        Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('label')->nullable();
             $table->timestamps();
         });
 
-        Schema::create('permissions', function(Blueprint $table){
+        Schema::create('permissions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('label')->nullable();
             $table->timestamps();
         });
 
-        Schema::create('permission_role', function(Blueprint $table){
+        Schema::create('permission_role', function (Blueprint $table) {
             $table->integer('permission_id')->unsigned();
             $table->integer('role_id')->unsigned();
 
@@ -43,7 +43,7 @@ class CreateRolesTable extends Migration
             $table->primary(['permission_id', 'role_id']);
         });
 
-        Schema::create('role_user', function(Blueprint $table){
+        Schema::create('role_user', function (Blueprint $table) {
             $table->integer('role_id')->unsigned();
             $table->integer('user_id')->unsigned();
 
@@ -57,8 +57,7 @@ class CreateRolesTable extends Migration
                   ->on('users')
                   ->onDelete('cascade');
 
-           $table->primary(['role_id', 'user_id']);      
-
+            $table->primary(['role_id', 'user_id']);
         });
     }
 

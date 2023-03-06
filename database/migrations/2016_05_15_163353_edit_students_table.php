@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class EditStudentsTable extends Migration
 {
@@ -12,8 +12,8 @@ class EditStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::table('students', function(Blueprint $table){
-           $table->integer('active')->after('medical_info');
+        Schema::table('students', function (Blueprint $table) {
+            $table->integer('active')->after('medical_info');
         });
     }
 

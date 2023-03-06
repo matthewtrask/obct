@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Obct;
 
 use App\AboutTroupe;
 use App\CurrentShow;
-use App\Performance;
-
 use App\Http\Controllers\Controller;
+use App\Performance;
 
 class TroupeController extends Controller
 {
@@ -28,7 +27,6 @@ class TroupeController extends Controller
 
     public function troupe()
     {
-
         $currentShow = CurrentShow::where('active', 1)
                                   ->get();
 
@@ -39,11 +37,11 @@ class TroupeController extends Controller
                             ->get();
 
         return view('obct.troupe',
-                    [
-                        'currentShow'  => $currentShow,
-                        'aboutTroupe'  => $aboutTroupe,
-                        'performances' => $performance
-                    ]
+            [
+                'currentShow' => $currentShow,
+                'aboutTroupe' => $aboutTroupe,
+                'performances' => $performance,
+            ]
         );
     }
 }

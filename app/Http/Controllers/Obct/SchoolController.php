@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Obct;
 
-use App\Schools;
 use App\CurrentShow;
-use App\SchoolPoints;
-use App\Performance;
-
 use App\Http\Controllers\Controller;
+use App\Performance;
+use App\SchoolPoints;
+use App\Schools;
 
 class SchoolController extends Controller
 {
@@ -35,12 +34,12 @@ class SchoolController extends Controller
                             ->get();
 
         return view('obct.school',
-                    [
-                        'schools' => $schools,
-                        'schoolPoints' => $schoolPoints,
-                        'currentShow' => $currentShow,
-                        'performances' => $performance
-                    ]
+            [
+                'schools' => $schools,
+                'schoolPoints' => $schoolPoints,
+                'currentShow' => $currentShow,
+                'performances' => $performance,
+            ]
         );
     }
 }

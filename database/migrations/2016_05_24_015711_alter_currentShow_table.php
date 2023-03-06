@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class AlterCurrentShowTable extends Migration
@@ -12,7 +11,7 @@ class AlterCurrentShowTable extends Migration
      */
     public function up()
     {
-        Schema::table('currentShow', function($table){
+        Schema::table('currentShow', function ($table) {
             $table->string('cast_page')->after('link');
         });
     }

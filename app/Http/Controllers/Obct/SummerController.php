@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Obct;
 
+use App\CurrentShow;
+use App\Http\Controllers\Controller;
+use App\Performance;
 use App\Summer;
 use App\SummerInfo;
-use App\CurrentShow;
-use App\Performance;
-
-use App\Http\Controllers\Controller;
 
 class SummerController extends Controller
 {
@@ -35,13 +34,12 @@ class SummerController extends Controller
                             ->get();
 
         return view('obct.summer',
-                    [
-                        'summer' => $summer,
-                        'summerInfo' => $summerInfo,
-                        'currentShow' => $currentShow,
-                        'performances' => $performance
-                    ]
+            [
+                'summer' => $summer,
+                'summerInfo' => $summerInfo,
+                'currentShow' => $currentShow,
+                'performances' => $performance,
+            ]
         );
     }
 }
-

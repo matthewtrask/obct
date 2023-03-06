@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateCurrentShowTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreateCurrentShowTable extends Migration
      */
     public function up()
     {
-        Schema::create('currentShow', function(Blueprint $table){
+        Schema::create('currentShow', function (Blueprint $table) {
             $table->increments('id');
             $table->string('show_title');
             $table->text('description');

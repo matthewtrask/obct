@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Schools;
+use Illuminate\Http\Request;
 
 class SchoolsController extends Controller
 {
@@ -21,7 +21,7 @@ class SchoolsController extends Controller
 
         return view('admin.schools',
             [
-            'schools' => $schools
+                'schools' => $schools,
             ]
         );
     }
@@ -37,9 +37,6 @@ class SchoolsController extends Controller
         $school->save();
 
         return redirect('/admin/schools')->with('updated', 'School has been added!');
-
-
-
     }
 
     public function edit(Request $request, $school_id)
@@ -60,6 +57,5 @@ class SchoolsController extends Controller
         $this->schools->destroy($school_id);
 
         return redirect('/admin/schools')->with('updated', 'School has been deleted!');
-
     }
 }

@@ -8,16 +8,14 @@
 
 namespace App\Http\Controllers\Users;
 
-
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Input;
 use App\Students;
-
+use Illuminate\Support\Facades\Request;
 
 class StudentController extends Controller
 {
     /**
-     * @var Students $students
+     * @var Students
      */
     private $students;
 
@@ -33,7 +31,7 @@ class StudentController extends Controller
 
     public function addStudent()
     {
-        $student = Input::all(
+        $student = Request::all(
             'first_name',
             'last_name',
             'age',

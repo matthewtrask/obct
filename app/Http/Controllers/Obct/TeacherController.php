@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Obct;
 
-use App\Teacher;
 use App\CurrentShow;
-use App\Performance;
-
 use App\Http\Controllers\Controller;
-
+use App\Performance;
+use App\Teacher;
 
 class TeacherController extends Controller
 {
@@ -33,12 +31,11 @@ class TeacherController extends Controller
                                   ->get();
 
         return view('obct.teachers',
-                    [
-                        'teachers' => $teachers,
-                        'performances' => $performance,
-                        'currentShow' => $currentShow
-                    ]
+            [
+                'teachers' => $teachers,
+                'performances' => $performance,
+                'currentShow' => $currentShow,
+            ]
         );
     }
-
 }

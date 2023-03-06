@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
 use App\Performance;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
-use App\CurrentShow;
-use App\Upcoming;
 
 class PerformanceController extends Controller
 {
@@ -21,7 +18,8 @@ class PerformanceController extends Controller
 
     /**
      * PerformanceController constructor.
-     * @param Performance $performance
+     *
+     * @param  Performance  $performance
      */
     public function __construct(Performance $performance)
     {
@@ -40,7 +38,7 @@ class PerformanceController extends Controller
 
         return view('admin.performance',
             [
-                'performances' => $performances
+                'performances' => $performances,
             ]
         );
     }
@@ -59,28 +57,27 @@ class PerformanceController extends Controller
         $performance->cast_page = '/cast';
         $image = $request->file('image');
 
-        if(!$image->isValid()){
-            return "<p>No image was uploaded.</p>";
+        if (! $image->isValid()) {
+            return '<p>No image was uploaded.</p>';
         }
 
         $data = file_get_contents($image);
 
         $performance->show_image = base64_encode($data);
 
-
-        if(isset($request->active)){
+        if (isset($request->active)) {
             $performance->active = $request->active;
         } else {
             $performance->active = 0;
         }
 
-        if(isset($request->upcoming)){
+        if (isset($request->upcoming)) {
             $performance->upcoming = $request->upcoming;
         } else {
             $performance->upcoming = 0;
         }
 
-        if(isset($request->auditions)){
+        if (isset($request->auditions)) {
             $performance->auditions = $request->auditions;
             $performance->upcoming = 1;
         } else {
@@ -90,8 +87,8 @@ class PerformanceController extends Controller
         $performance->past = 0;
 
         $performance->save();
-        return redirect('/admin/performances')->with('updated', 'Performance has been added!');
 
+        return redirect('/admin/performances')->with('updated', 'Performance has been added!');
     }
 
     public function editPerformance(Request $request)
@@ -106,8 +103,8 @@ class PerformanceController extends Controller
         $performance->link = $request->link;
 
         if ($request->image) {
-            if(!$request->image->isValid()){
-                return "<p>No image was uploaded.</p>";
+            if (! $request->image->isValid()) {
+                return '<p>No image was uploaded.</p>';
             }
 
             $data = file_get_contents($request->image);
@@ -115,23 +112,21 @@ class PerformanceController extends Controller
             $performance->show_image = base64_encode($data);
         }
 
-
-
-        if(isset($request->active)){
+        if (isset($request->active)) {
             $performance->active = $request->active;
             $request->past = 0;
         } else {
             $performance->active = 0;
         }
 
-        if(isset($request->upcoming)){
+        if (isset($request->upcoming)) {
             $performance->upcoming = $request->upcoming;
             $request->past = 0;
         } else {
             $performance->upcoming = 0;
         }
 
-        if(isset($request->auditions)){
+        if (isset($request->auditions)) {
             $performance->auditions = $request->auditions;
             $request->past = 0;
             $performance->upcoming = 1;

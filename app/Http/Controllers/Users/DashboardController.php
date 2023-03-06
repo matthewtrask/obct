@@ -8,12 +8,10 @@
 
 namespace App\Http\Controllers\Users;
 
-
 use App\Http\Controllers\Controller;
-use App\User;
 use App\Students;
+use App\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
@@ -31,8 +29,6 @@ class DashboardController extends Controller
     {
         $this->user = $user;
         $this->student = $students;
-        
-        
     }
 
     public function index()
@@ -45,11 +41,10 @@ class DashboardController extends Controller
 
         $students = $this->student->find($user_id);
 
-
         return view('users.dashboard',
             [
                 'user' => $user,
-                'student' => $students
+                'student' => $students,
 
             ]
         );

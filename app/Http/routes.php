@@ -28,8 +28,6 @@ Route::get('/contact', 'Obct\ContactController@contact');
 
 Route::post('/contactMsg', 'Obct\ContactController@postContact');
 
-
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -77,9 +75,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/user', 'Users\DashboardController@index');
     Route::get('/user/{id}/edit', 'Users\DashboardController@editInfo');
 
-
     Route::get('/user/{id}/signup', 'Users\StudentController@registerStudent');
-    Route::post('/user/{id}/singup/add', 'Users\StudentController@addStudent'); 
+    Route::post('/user/{id}/singup/add', 'Users\StudentController@addStudent');
     Route::get('/user/{id}/view', 'Users\StudentController@viewInfo');
-
 });

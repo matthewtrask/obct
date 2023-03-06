@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Obct;
 
-use App\Http\Controllers\Controller;
-
 use App\Alert;
-use App\WhatsNew;
 use App\CurrentShow;
+use App\Http\Controllers\Controller;
 use App\Performance;
+use App\WhatsNew;
 
 class HomeController extends Controller
 {
@@ -34,7 +33,7 @@ class HomeController extends Controller
     public function __construct(WhatsNew $whatsNew, CurrentShow $currentShow, Alert $alert, Performance $performance)
     {
         $this->whatsNew = $whatsNew;
-        $this->currentShow= $currentShow;
+        $this->currentShow = $currentShow;
         $this->alert = $alert;
         $this->performance = $performance;
     }
@@ -62,7 +61,7 @@ class HomeController extends Controller
             'whatsNew' => $whatsNew,
             'currentShow' => $currentShow,
             'performances' => $performance,
-            'alerts' => $alert
+            'alerts' => $alert,
         ]);
     }
 }
