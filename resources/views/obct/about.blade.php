@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layouts.master')
 
 @section('title', 'About')
 
@@ -13,6 +13,6 @@
     </div>
 
 
-    <img src="img/suess-alum.jpg" class="footerImage">
+    <img src="https://obct.nyc3.cdn.digitaloceanspaces.com/suess-alum.jpg" class="Dr. Suess cast">
 @endsection
 

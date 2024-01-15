@@ -1,10 +1,13 @@
-@extends('layout.master')
+@extends('layouts.master')
 
 @section('title', 'Classes')
 
 @section('content')
 
     <h2>Classes</h2>
+<br>
+<p>No classes at this time. Please contact us for audition information!</p>
+<br>
     @foreach($classes as $class)
         <div class="panel" id="classes">
             <h3>{{$class->class_name}}</h3>
@@ -18,7 +21,6 @@
                         <li>{{$class->ages}}</li>
                         <li>{{$class->day}}</li>
                         <li>{{$class->time}}</li>
-                        <li>{{$class->price}}</li>
                     </ul>
                     <button class="button register"><a href="{{$class->link or 'Email Us'}}">Register</a></button>
 
@@ -27,8 +29,5 @@
         </div>
 
     @endforeach
-    <ul class="pagination">
-        {{$paginate->render()}}
-    </ul>
 
 @endsection

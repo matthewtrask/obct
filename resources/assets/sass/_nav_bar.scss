@@ -10,6 +10,10 @@ nav.top-bar ul.title-area li.toggle-topbar.menu-icon a span{
   color: #fff;
 }
 
+nav.top-bar {
+  padding-top: 0;
+}
+
 nav.top-bar section.top-bar-section ul.left li a:hover,
 nav.top-bar section.top-bar-section ul.right li a:hover,
 nav.top-bar section.top-bar-section ul.right li.has-dropdown ul.dropdown li a:hover,

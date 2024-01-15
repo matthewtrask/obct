@@ -1,0 +1,31 @@
+button.button.red {
+  background-color: $red;
+  a {
+    color: #fff;
+  }
+}
+
+button.button.green {
+  background-color: $green;
+  a {
+    color: #fff;
+  }
+}
+
+button.button#addSchool {
+  background-color: $message;
+  a {
+    color: #fff;
+  }
+}
+
+button.button.deleteSchool {
+  background-color: $wordpress;
+  a {
+    color: #fff;
+  }
+}
+
+div#panel {
+  border: 1px solid $gray;
+}

@@ -1,0 +1,65 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Schools;
+
+class SchoolsController extends Controller
+{
+    private $schools;
+
+    public function __construct(Schools $schools)
+    {
+        $this->schools = $schools;
+    }
+
+    public function index()
+    {
+        $schools = $this->schools->all();
+
+        return view('admin.schools',
+            [
+            'schools' => $schools
+            ]
+        );
+    }
+
+    public function add(Request $request)
+    {
+        $school = $this->schools;
+
+        $school->school = $request->school;
+        $school->location = $request->location;
+        $school->details = $request->details;
+
+        $school->save();
+
+        return redirect('/admin/schools')->with('updated', 'School has been added!');
+
+
+
+    }
+
+    public function edit(Request $request, $school_id)
+    {
+        $school = $this->schools;
+
+        $school->school = $request->school;
+        $school->location = $request->location;
+        $school->details = $request->details;
+
+        $school->save($school_id);
+
+        return redirect('/admin/schools')->with('updated', 'School has been edited!');
+    }
+
+    public function delete($school_id)
+    {
+        $this->schools->destroy($school_id);
+
+        return redirect('/admin/schools')->with('updated', 'School has been deleted!');
+
+    }
+}

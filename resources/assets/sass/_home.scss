@@ -6,7 +6,7 @@ div.logo {
   margin-bottom: 5%;
 }
 
-div#mission {
+div#mission, div#alert {
   margin-top: 5%;
 }
 
@@ -21,10 +21,30 @@ div#sidebar {
 }
 
 div#whatsNew {
-  height: 300px;
-  overflow: scroll;
+   height: 400px;
+   overflow: scroll;
+   button.button.whatsnew {
+     background-color: $red !important;
+     a {
+       color: #fff !important;
+     }
+   }
+ }
+
+
+div.panel#faq {
   button.button.whatsnew {
-      background-color: $red !important;
+    background-color: $red !important;
+    a {
+      color: #fff !important;
+    }
+  }
+}
+
+
+div.panel#auditions {
+  button.button.whatsnew {
+    background-color: $red !important;
     a {
       color: #fff !important;
     }

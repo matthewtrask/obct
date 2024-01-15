@@ -1,0 +1,15 @@
+div#upcoming {
+ min-height: 375px;
+ img {
+  height: 300px;
+ }
+}
+
+div.panel {
+ .button.red {
+  background-color: $red;
+   a {
+    color: #fff;
+   }
+ }
+}

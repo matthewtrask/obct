@@ -1,10 +1,10 @@
-@extends('layout.master')
+@extends('layouts.master')
 
 @section('title', 'Schools')
 
 @section('content')
 
-    <h2>OBCT in Schools</h2>
+    <h2>OBCT in Schools</h2><hr>
 
     @foreach($schoolPoints as $points)
         <h3><b>{{$points->point}}</b>:</h3> <p>{{$points->answer}}</p>

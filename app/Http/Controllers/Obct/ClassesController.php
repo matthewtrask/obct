@@ -3,25 +3,39 @@
 namespace App\Http\Controllers\Obct;
 
 use App\Classes;
-use Illuminate\Pagination\Paginator;
 use App\CurrentShow;
+use App\Performance;
+
 use App\Http\Controllers\Controller;
 
 class ClassesController extends Controller
 {
+    /**
+     * @var Performance
+     */
+    private $performance;
+
+    public function __construct(Performance $performance)
+    {
+        $this->performance = $performance;
+    }
+
     public function classes()
     {
-        $classes = Classes::paginate(5);
+        $classes = Classes::all();
 
-        $currentShow = CurrentShow::all();
+        $performance = $this->performance
+                            ->where('active', 1)
+                            ->get();
 
-        $paginator = new Paginator($classes, count($classes), 5);
+        $currentShow = CurrentShow::where('active', 1)
+                                  ->get();
 
         return view('obct.classes',
                     [
                         'classes' => $classes,
+                        'performances' => $performance,
                         'currentShow' => $currentShow,
-                        'paginate' => $paginator
                     ]
         );
     }

@@ -1,0 +1,14 @@
+div.small-3.columns.add {
+    button.button.red {
+      background-color: #fff;
+      border: 1px solid $red;
+      a {
+        color: $red;
+      }
+    }
+}
+
+div#perId img {
+  width: 300px;
+  height: 300px;
+}
