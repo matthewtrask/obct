@@ -1,0 +1,75 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Build frontend assets in CI so the server never needs Node/npm
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install JS dependencies
+        run: npm ci
+
+      - name: Build frontend assets
+        run: npm run build
+
+      # Write the SSH key once and reuse it for both rsync and SSH steps
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts
+
+      # Push only the compiled assets — git handles everything else
+      - name: Sync built assets to server
+        run: |
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            public/build/ \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/public/build/
+
+      - name: Deploy on server
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} << 'EOF'
+            set -e
+            cd ${{ secrets.DEPLOY_PATH }}
+
+            # Maintenance mode — keeps the site up with a retry header
+            # while we swap code underneath
+            php artisan down --retry=15
+
+            # Pull latest code
+            git pull origin main
+
+            # PHP dependencies (no dev packages in production)
+            composer install --no-dev --optimize-autoloader --no-interaction
+
+            # Run any new migrations
+            php artisan migrate --force
+
+            # Cache config, routes, and views for performance
+            php artisan optimize
+
+            # Tell the queue worker to restart gracefully after current jobs finish
+            php artisan queue:restart
+
+            # Bring the site back up
+            php artisan up
+
+            # Reload PHP-FPM to pick up any changed files
+            sudo systemctl reload php8.2-fpm
+          EOF
