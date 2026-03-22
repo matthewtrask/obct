@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PageResource\Pages;
 use App\Filament\Resources\PageResource\RelationManagers;
 use App\Models\Page;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Models\Media;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -32,8 +34,18 @@ class PageResource extends Resource
                 Forms\Components\Textarea::make('content')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\FileUpload::make('image')
-                    ->image(),
+                CuratorPicker::make('image')
+                    ->label('Image')
+                    ->buttonLabel('Select or Upload Image')
+                    ->nullable()
+                    ->afterStateHydrated(function (CuratorPicker $component, $state) {
+                        if ($state && ! is_numeric($state)) {
+                            $component->state(Media::where('path', $state)->first()?->id);
+                        }
+                    })
+                    ->dehydrateStateUsing(function ($state) {
+                        return is_numeric($state) ? Media::find($state)?->path : $state;
+                    }),
             ]);
     }
 

@@ -6,6 +6,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Awcodes\Curator\CuratorPlugin;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -40,6 +41,9 @@ class AdminPanelProvider extends PanelProvider
             ->navigationGroups([
                 'Content',
                 'Settings',
+            ])
+            ->plugins([
+                CuratorPlugin::make(),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

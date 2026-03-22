@@ -5,8 +5,9 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ShowResource\Pages;
 use App\Filament\Resources\ShowResource\RelationManagers;
 use App\Models\Show;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Models\Media;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -46,14 +47,19 @@ class ShowResource extends Resource
 
                 Section::make('Show Image')
                     ->schema([
-                        Forms\Components\FileUpload::make('show_image')
+                        CuratorPicker::make('show_image')
                             ->label('Show Image')
-                            ->image()
-                            ->imageEditor()
-                            ->disk('do')
-                            ->directory('shows')
-                            ->maxSize(5120)
-                            ->columnSpanFull(),
+                            ->buttonLabel('Select or Upload Image')
+                            ->nullable()
+                            ->columnSpanFull()
+                            ->afterStateHydrated(function (CuratorPicker $component, $state) {
+                                if ($state && ! is_numeric($state)) {
+                                    $component->state(Media::where('path', $state)->first()?->id);
+                                }
+                            })
+                            ->dehydrateStateUsing(function ($state) {
+                                return is_numeric($state) ? Media::find($state)?->path : $state;
+                            }),
                     ])
                     ->columns(1),
 

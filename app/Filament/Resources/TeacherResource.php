@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\TeacherResource\Pages;
 use App\Filament\Resources\TeacherResource\RelationManagers;
 use App\Models\Teacher;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Models\Media;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -29,8 +31,18 @@ class TeacherResource extends Resource
                 Forms\Components\Textarea::make('bio')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\FileUpload::make('image')
-                    ->image(),
+                CuratorPicker::make('image')
+                    ->label('Photo')
+                    ->buttonLabel('Select or Upload Image')
+                    ->nullable()
+                    ->afterStateHydrated(function (CuratorPicker $component, $state) {
+                        if ($state && ! is_numeric($state)) {
+                            $component->state(Media::where('path', $state)->first()?->id);
+                        }
+                    })
+                    ->dehydrateStateUsing(function ($state) {
+                        return is_numeric($state) ? Media::find($state)?->path : $state;
+                    }),
                 Forms\Components\TextInput::make('specialties')
                     ->maxLength(255),
                 Forms\Components\Toggle::make('active')

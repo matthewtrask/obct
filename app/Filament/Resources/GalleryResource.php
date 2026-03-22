@@ -6,6 +6,8 @@ use App\Filament\Resources\GalleryResource\Pages;
 use App\Filament\Resources\GalleryResource\RelationManagers;
 use App\Models\Gallery;
 use App\Models\Show;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Models\Media;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -35,8 +37,18 @@ class GalleryResource extends Resource
                     ->searchable()
                     ->nullable(),
                 Forms\Components\DatePicker::make('event_date'),
-                Forms\Components\FileUpload::make('cover_image')
-                    ->image(),
+                CuratorPicker::make('cover_image')
+                    ->label('Cover Image')
+                    ->buttonLabel('Select or Upload Image')
+                    ->nullable()
+                    ->afterStateHydrated(function (CuratorPicker $component, $state) {
+                        if ($state && ! is_numeric($state)) {
+                            $component->state(Media::where('path', $state)->first()?->id);
+                        }
+                    })
+                    ->dehydrateStateUsing(function ($state) {
+                        return is_numeric($state) ? Media::find($state)?->path : $state;
+                    }),
                 Forms\Components\Toggle::make('active')
                     ->required(),
                 Forms\Components\TextInput::make('order')

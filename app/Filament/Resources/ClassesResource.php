@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ClassesResource\Pages;
 use App\Filament\Resources\ClassesResource\RelationManagers;
 use App\Models\Classes;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Models\Media;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -47,8 +49,18 @@ class ClassesResource extends Resource
                 Forms\Components\DatePicker::make('end_date'),
                 Forms\Components\TextInput::make('capacity')
                     ->numeric(),
-                Forms\Components\FileUpload::make('image')
-                    ->image(),
+                CuratorPicker::make('image')
+                    ->label('Image')
+                    ->buttonLabel('Select or Upload Image')
+                    ->nullable()
+                    ->afterStateHydrated(function (CuratorPicker $component, $state) {
+                        if ($state && ! is_numeric($state)) {
+                            $component->state(Media::where('path', $state)->first()?->id);
+                        }
+                    })
+                    ->dehydrateStateUsing(function ($state) {
+                        return is_numeric($state) ? Media::find($state)?->path : $state;
+                    }),
                 Forms\Components\Toggle::make('active')
                     ->required(),
                 Forms\Components\TextInput::make('order')
