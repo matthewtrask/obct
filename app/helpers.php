@@ -11,7 +11,9 @@ if (!function_exists('cdn_url')) {
         }
 
         // Otherwise prepend your DO Spaces URL
-        $baseUrl = env('DO_SPACES_URL', 'https://obct.nyc3.digitaloceanspaces.com');
+        // Note: config() is used here instead of env() so this works correctly
+        // after `php artisan config:cache` runs in production.
+        $baseUrl = config('filesystems.disks.do.url', 'https://obct.nyc3.digitaloceanspaces.com');
         return $baseUrl . '/' . ltrim($path, '/');
     }
 }
