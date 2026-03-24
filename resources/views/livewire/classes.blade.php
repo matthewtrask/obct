@@ -21,7 +21,7 @@
                 </button>
                 <button wire:click="$set('selectedType', 'summer')"
                         class="px-6 py-2 rounded-lg font-semibold transition {{ $selectedType === 'summer' ? 'bg-lime-500 text-gray-900' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
-                    Summer Programs
+                    Summer Camps
                 </button>
                 <button wire:click="$set('selectedType', 'workshop')"
                         class="px-6 py-2 rounded-lg font-semibold transition {{ $selectedType === 'workshop' ? 'bg-lime-500 text-gray-900' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
@@ -53,8 +53,15 @@
                                 <div class="flex items-start justify-between gap-3 mb-3">
                                     <h2 class="text-2xl font-bold text-gray-800 flex-grow">{{ $class->name }}</h2>
                                     @if($class->session_type)
+                                        @php
+                                            $typeLabels = [
+                                                'year-round' => 'Year-Round',
+                                                'summer'     => 'Summer Camp',
+                                                'workshop'   => 'Workshop',
+                                            ];
+                                        @endphp
                                         <span class="px-3 py-1 bg-lime-100 text-lime-700 text-xs font-semibold rounded-full whitespace-nowrap flex-shrink-0">
-                                            {{ ucfirst(str_replace('-', ' ', $class->session_type)) }}
+                                            {{ $typeLabels[$class->session_type] ?? ucfirst(str_replace('-', ' ', $class->session_type)) }}
                                         </span>
                                     @endif
                                 </div>

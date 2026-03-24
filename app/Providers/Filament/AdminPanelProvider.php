@@ -56,6 +56,7 @@ class AdminPanelProvider extends PanelProvider
                 \App\Filament\Widgets\StatsOverview::class,
                 \App\Filament\Widgets\LatestShows::class,
                 \App\Filament\Widgets\QuickActions::class,
+                \App\Filament\Widgets\HowToGuide::class,
             ])
             ->middleware([
                 EncryptCookies::class,
