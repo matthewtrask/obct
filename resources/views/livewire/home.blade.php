@@ -159,23 +159,31 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     @foreach($this->featuredClasses as $class)
-                        <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition focus-within:ring-2 focus-within:ring-lime-500">
+                        <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition focus-within:ring-2 focus-within:ring-lime-500 flex flex-col">
                             @if($class->image)
                                 <img src="{{ cdn_url($class->image) }}"
                                      alt="{{ $class->name }}"
                                      class="w-full h-48 object-cover">
                             @endif
-                            <div class="p-6">
+                            <div class="p-6 flex flex-col flex-grow">
                                 <h3 class="text-xl font-bold text-gray-800 mb-2">{{ $class->name }}</h3>
                                 @if($class->age_range)
                                     <p class="text-sm text-lime-600 font-semibold mb-2">Ages: {{ $class->age_range }}</p>
                                 @endif
-                                <p class="text-gray-600 mb-4">{{ Str::limit($class->description, 100) }}</p>
+                                <p class="text-gray-600 mb-4 flex-grow">{{ Str::limit($class->description, 100) }}</p>
                                 @if($class->schedule)
                                     <p class="text-sm text-gray-500 mb-3">📅 {{ $class->schedule }}</p>
                                 @endif
                                 @if($class->price)
-                                    <p class="text-lg font-bold text-lime-600">${{ number_format($class->price, 2) }}</p>
+                                    <p class="text-lg font-bold text-lime-600 mb-4">${{ number_format($class->price, 2) }}</p>
+                                @endif
+                                @if($class->signup_url)
+                                    <a href="{{ $class->signup_url }}"
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       class="mt-auto inline-block w-full text-center bg-lime-500 hover:bg-lime-400 text-gray-900 font-bold py-2.5 px-6 rounded-lg transition shadow-sm">
+                                        Register Now
+                                    </a>
                                 @endif
                             </div>
                         </article>
