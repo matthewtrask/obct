@@ -41,6 +41,10 @@ class TeacherResource extends Resource
                         }
                     })
                     ->dehydrateStateUsing(function ($state) {
+                        if (is_array($state)) {
+                            $first = reset($state);
+                            return is_array($first) ? ($first['path'] ?? null) : null;
+                        }
                         return is_numeric($state) ? Media::find($state)?->path : $state;
                     }),
                 Forms\Components\TextInput::make('specialties')
