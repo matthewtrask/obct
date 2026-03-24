@@ -17,6 +17,7 @@ class Classes extends Model
         'end_date',
         'capacity',
         'image',
+        'signup_url',
         'active',
         'order',
     ];

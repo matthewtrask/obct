@@ -61,6 +61,13 @@ class ClassesResource extends Resource
                     ->dehydrateStateUsing(function ($state) {
                         return is_numeric($state) ? Media::find($state)?->path : $state;
                     }),
+                Forms\Components\TextInput::make('signup_url')
+                    ->label('Registration Link (JackRabbit)')
+                    ->url()
+                    ->placeholder('https://app.jackrabbitclass.com/regv2.asp?id=...')
+                    ->helperText('Paste the JackRabbit signup link. A "Register Now" button will appear on the public page.')
+                    ->maxLength(500)
+                    ->columnSpanFull(),
                 Forms\Components\Toggle::make('active')
                     ->required(),
                 Forms\Components\TextInput::make('order')

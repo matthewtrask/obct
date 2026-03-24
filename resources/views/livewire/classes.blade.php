@@ -85,6 +85,15 @@
                                     @if($class->price)
                                         <p class="text-2xl font-bold text-lime-600 mt-4">${{ number_format($class->price, 2) }}</p>
                                     @endif
+
+                                    @if($class->signup_url)
+                                        <a href="{{ $class->signup_url }}"
+                                           target="_blank"
+                                           rel="noopener noreferrer"
+                                           class="mt-4 inline-block w-full text-center bg-lime-500 hover:bg-lime-400 text-gray-900 font-bold py-3 px-6 rounded-lg transition shadow">
+                                            Register Now
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                         </article>
