@@ -107,7 +107,7 @@
                     @foreach($this->featuredClasses as $class)
                         <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition focus-within:ring-2 focus-within:ring-lime-500">
                             @if($class->image)
-                                <img src="{{ Storage::url($class->image) }}"
+                                <img src="{{ cdn_url($class->image) }}"
                                      alt="{{ $class->name }}"
                                      class="w-full h-48 object-cover">
                             @endif
@@ -152,7 +152,7 @@
                             <p class="text-gray-700 mb-6 italic">{{ $testimonial->content }}</p>
                             <footer class="flex items-center">
                                 @if($testimonial->photo)
-                                    <img src="{{ Storage::url($testimonial->photo) }}"
+                                    <img src="{{ cdn_url($testimonial->photo) }}"
                                          alt=""
                                          class="w-12 h-12 rounded-full mr-4">
                                 @endif

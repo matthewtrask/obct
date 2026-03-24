@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PageResource\Pages;
-use App\Filament\Resources\PageResource\RelationManagers;
 use App\Models\Page;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Models\Media;
@@ -12,30 +11,38 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PageResource extends Resource
 {
     protected static ?string $model = Page::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationGroup = 'Settings';
+    protected static ?string $navigationLabel = 'Custom Pages';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255),
                 Forms\Components\TextInput::make('title')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->placeholder('e.g., About Our Studio'),
+
+                Forms\Components\TextInput::make('slug')
+                    ->required()
+                    ->maxLength(255)
+                    ->placeholder('e.g., about-our-studio')
+                    ->helperText('The URL path for this page (e.g. "about-our-studio" → offbroadwaykids.net/pages/about-our-studio). Use lowercase letters and hyphens only, no spaces.'),
+
                 Forms\Components\Textarea::make('content')
                     ->required()
-                    ->columnSpanFull(),
+                    ->rows(10)
+                    ->columnSpanFull()
+                    ->helperText('The main content of this page.'),
+
                 CuratorPicker::make('image')
-                    ->label('Image')
+                    ->label('Page Image (optional)')
                     ->buttonLabel('Select or Upload Image')
                     ->nullable()
                     ->afterStateHydrated(function (CuratorPicker $component, $state) {
@@ -57,23 +64,20 @@ class PageResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('slug')
+                    ->searchable()
+                    ->formatStateUsing(fn ($state) => '/pages/' . $state)
+                    ->copyable()
+                    ->copyMessage('Page URL copied'),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->label('Last Updated')
+                    ->since()
+                    ->sortable(),
             ])
-            ->filters([
-                //
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
@@ -84,19 +88,14 @@ class PageResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
+    public static function getRelations(): array { return []; }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPages::route('/'),
+            'index'  => Pages\ListPages::route('/'),
             'create' => Pages\CreatePage::route('/create'),
-            'edit' => Pages\EditPage::route('/{record}/edit'),
+            'edit'   => Pages\EditPage::route('/{record}/edit'),
         ];
     }
 }

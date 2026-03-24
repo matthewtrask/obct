@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TeacherResource\Pages;
-use App\Filament\Resources\TeacherResource\RelationManagers;
 use App\Models\Teacher;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Models\Media;
@@ -12,14 +11,14 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TeacherResource extends Resource
 {
     protected static ?string $model = Teacher::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+    protected static ?string $navigationGroup = 'Content';
+    protected static ?string $navigationLabel = 'Teachers';
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
@@ -27,13 +26,23 @@ class TeacherResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->placeholder('e.g., Shannon Mayer'),
+
+                Forms\Components\TextInput::make('specialties')
+                    ->maxLength(255)
+                    ->placeholder('e.g., Musical Theatre, Dance, Vocal Coaching')
+                    ->helperText('Shown under the teacher\'s name on the Teachers page.'),
+
                 Forms\Components\Textarea::make('bio')
                     ->required()
-                    ->columnSpanFull(),
+                    ->rows(5)
+                    ->columnSpanFull()
+                    ->helperText('A short bio displayed on the Teachers page.'),
+
                 CuratorPicker::make('image')
                     ->label('Photo')
-                    ->buttonLabel('Select or Upload Image')
+                    ->buttonLabel('Select or Upload Photo')
                     ->nullable()
                     ->afterStateHydrated(function (CuratorPicker $component, $state) {
                         if ($state && ! is_numeric($state)) {
@@ -47,47 +56,47 @@ class TeacherResource extends Resource
                         }
                         return is_numeric($state) ? Media::find($state)?->path : $state;
                     }),
-                Forms\Components\TextInput::make('specialties')
-                    ->maxLength(255),
+
                 Forms\Components\Toggle::make('active')
-                    ->required(),
+                    ->label('Show on website')
+                    ->helperText('Turn off to hide this teacher without deleting them.')
+                    ->default(true),
+
                 Forms\Components\TextInput::make('order')
-                    ->required()
+                    ->label('Display Order')
                     ->numeric()
-                    ->default(0),
+                    ->default(0)
+                    ->helperText('Lower numbers appear first (0 = first).'),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('order')
             ->columns([
+                Tables\Columns\ImageColumn::make('image')
+                    ->label('Photo')
+                    ->circular(),
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('specialties')
-                    ->searchable(),
+                    ->searchable()
+                    ->limit(40),
                 Tables\Columns\IconColumn::make('active')
+                    ->label('Live')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('order')
+                    ->label('#')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                //
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
@@ -98,19 +107,14 @@ class TeacherResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
+    public static function getRelations(): array { return []; }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTeachers::route('/'),
+            'index'  => Pages\ListTeachers::route('/'),
             'create' => Pages\CreateTeacher::route('/create'),
-            'edit' => Pages\EditTeacher::route('/{record}/edit'),
+            'edit'   => Pages\EditTeacher::route('/{record}/edit'),
         ];
     }
 }

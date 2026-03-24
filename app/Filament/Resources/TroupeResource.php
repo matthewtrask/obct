@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TroupeResource\Pages;
-use App\Filament\Resources\TroupeResource\RelationManagers;
 use App\Models\Troupe;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Models\Media;
@@ -12,14 +11,14 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TroupeResource extends Resource
 {
     protected static ?string $model = Troupe::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-circle';
+    protected static ?string $navigationGroup = 'Content';
+    protected static ?string $navigationLabel = 'Troupes';
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
@@ -27,16 +26,37 @@ class TroupeResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('type')
-                    ->required(),
+                    ->maxLength(255)
+                    ->placeholder('e.g., Rising Stars'),
+
+                Forms\Components\Select::make('type')
+                    ->required()
+                    ->options([
+                        'Performance Troupe' => 'Performance Troupe',
+                        'Rising Stars'       => 'Rising Stars (ages 5–8)',
+                        'Junior Troupe'      => 'Junior Troupe',
+                        'Teen Troupe'        => 'Teen Troupe',
+                        'Adult Troupe'       => 'Adult Troupe',
+                        'Specialty'          => 'Specialty Group',
+                    ])
+                    ->native(false)
+                    ->helperText('The category or level of this troupe.'),
+
                 Forms\Components\Textarea::make('description')
                     ->required()
-                    ->columnSpanFull(),
+                    ->rows(5)
+                    ->columnSpanFull()
+                    ->helperText('Description shown on the public Troupes page.'),
+
                 Forms\Components\Textarea::make('requirements')
-                    ->columnSpanFull(),
+                    ->label('Requirements / How to Join')
+                    ->rows(3)
+                    ->columnSpanFull()
+                    ->placeholder('e.g., Audition required. Ages 9–16. Must be enrolled in at least one OBCT class.')
+                    ->helperText('Optional. Shown to parents who want to know how their child can join.'),
+
                 CuratorPicker::make('image')
-                    ->label('Image')
+                    ->label('Troupe Photo')
                     ->buttonLabel('Select or Upload Image')
                     ->nullable()
                     ->afterStateHydrated(function (CuratorPicker $component, $state) {
@@ -51,8 +71,11 @@ class TroupeResource extends Resource
                         }
                         return is_numeric($state) ? Media::find($state)?->path : $state;
                     }),
+
                 Forms\Components\Toggle::make('active')
-                    ->required(),
+                    ->label('Show on website')
+                    ->helperText('Turn off to hide this troupe without deleting it.')
+                    ->default(true),
             ]);
     }
 
@@ -60,28 +83,22 @@ class TroupeResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('image')
+                    ->label('Photo'),
                 Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('type')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('type'),
-                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\IconColumn::make('active')
+                    ->label('Live')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                //
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
@@ -92,19 +109,14 @@ class TroupeResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
+    public static function getRelations(): array { return []; }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTroupes::route('/'),
+            'index'  => Pages\ListTroupes::route('/'),
             'create' => Pages\CreateTroupe::route('/create'),
-            'edit' => Pages\EditTroupe::route('/{record}/edit'),
+            'edit'   => Pages\EditTroupe::route('/{record}/edit'),
         ];
     }
 }

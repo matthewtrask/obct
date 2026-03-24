@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ShowResource\Pages;
-use App\Filament\Resources\ShowResource\RelationManagers;
 use App\Models\Show;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Models\Media;
@@ -13,14 +12,14 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ShowResource extends Resource
 {
     protected static ?string $model = Show::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-star';
+    protected static ?string $navigationGroup = 'Content';
+    protected static ?string $navigationLabel = 'Shows & Performances';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
@@ -31,17 +30,21 @@ class ShowResource extends Resource
                         Forms\Components\TextInput::make('title')
                             ->required()
                             ->maxLength(255)
-                            ->columnSpanFull(),
+                            ->columnSpanFull()
+                            ->placeholder('e.g., Peter Pan Jr'),
 
                         Forms\Components\TextInput::make('teaser')
-                            ->label('Teaser (short tagline)')
+                            ->label('Tagline')
                             ->maxLength(255)
-                            ->columnSpanFull(),
+                            ->columnSpanFull()
+                            ->placeholder('e.g., Summer 2026')
+                            ->helperText('A short one-line description shown on show cards.'),
 
                         Forms\Components\Textarea::make('description')
                             ->required()
                             ->rows(5)
-                            ->columnSpanFull(),
+                            ->columnSpanFull()
+                            ->helperText('Full description shown on the Shows page.'),
                     ])
                     ->columns(1),
 
@@ -52,6 +55,7 @@ class ShowResource extends Resource
                             ->buttonLabel('Select or Upload Image')
                             ->nullable()
                             ->columnSpanFull()
+                            ->helperText('The image displayed on the homepage and shows page.')
                             ->afterStateHydrated(function (CuratorPicker $component, $state) {
                                 if ($state && ! is_numeric($state)) {
                                     $component->state(Media::where('path', $state)->first()?->id);
@@ -68,62 +72,72 @@ class ShowResource extends Resource
                     ->columns(1),
 
                 Section::make('Status & Tickets')
+                    ->description('Control whether this show appears as upcoming, currently running, or past.')
                     ->schema([
                         Forms\Components\Select::make('status')
                             ->required()
                             ->options([
-                                'upcoming' => 'Upcoming',
-                                'current' => 'Current',
-                                'past' => 'Past',
+                                'upcoming' => 'Upcoming — not yet open',
+                                'current'  => 'Current — showing now',
+                                'past'     => 'Past — show has closed',
                             ])
-                            ->default('upcoming'),
+                            ->default('upcoming')
+                            ->native(false),
 
                         Forms\Components\TextInput::make('ticket_price')
+                            ->label('Production Fee ($)')
                             ->numeric()
                             ->prefix('$')
-                            ->step(0.01),
+                            ->step(0.01)
+                            ->helperText('Cost for cast members to participate.'),
 
                         Forms\Components\TextInput::make('ticket_url')
-                            ->label('Ticket URL')
+                            ->label('Ticket Purchase Link')
                             ->url()
-                            ->maxLength(500),
+                            ->maxLength(500)
+                            ->placeholder('https://obct.yapsody.com/...')
+                            ->helperText('Paste the Yapsody ticket link when tickets go on sale.'),
                     ])
                     ->columns(3),
 
                 Section::make('Dates')
                     ->schema([
                         Forms\Components\DatePicker::make('start_date')
-                            ->label('Start Date'),
+                            ->label('First Show Date'),
 
                         Forms\Components\DatePicker::make('end_date')
-                            ->label('End Date'),
+                            ->label('Last Show Date'),
 
                         Forms\Components\DatePicker::make('audition_date')
-                            ->label('Audition Date'),
+                            ->label('Audition Date')
+                            ->helperText('First audition date.'),
                     ])
                     ->columns(3),
 
                 Section::make('Audition Information')
+                    ->description('This text appears on the Shows page under the show listing.')
                     ->schema([
                         Forms\Components\Textarea::make('audition_info')
-                            ->label('Audition Info')
-                            ->rows(3)
-                            ->columnSpanFull(),
+                            ->label('Audition Details')
+                            ->rows(5)
+                            ->columnSpanFull()
+                            ->placeholder("e.g., Auditions for ages 8-17. Dates: May 11 (6:00-7:30pm), May 16 (1:00-3:00pm), May 18 (6:00-7:30pm). Prepare 30 seconds of a song. Production fee: $275 if cast. Call 770-664-2410 to schedule."),
                     ])
                     ->columns(1)
                     ->collapsible(),
 
                 Section::make('Performance Times')
+                    ->description('List each show time separately. These appear on the Shows page.')
                     ->schema([
                         Forms\Components\Repeater::make('performance_times')
                             ->label('Show Times')
                             ->simple(
                                 Forms\Components\TextInput::make('time')
-                                    ->placeholder('e.g., Friday 7:00 PM')
+                                    ->placeholder('e.g., Friday July 31 at 7:00 PM')
                             )
                             ->columnSpanFull()
                             ->defaultItems(0)
-                            ->addActionLabel('Add Show Time'),
+                            ->addActionLabel('Add a Show Time'),
                     ])
                     ->columns(1)
                     ->collapsible(),
@@ -133,27 +147,26 @@ class ShowResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('start_date', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('teaser')
                     ->searchable()
-                    ->toggleable(),
-                Tables\Columns\ImageColumn::make('show_image'),
-                Tables\Columns\TextColumn::make('status'),
-                Tables\Columns\TextColumn::make('ticket_price')
-                    ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('ticket_url')
-                    ->searchable(),
+                Tables\Columns\ImageColumn::make('show_image')
+                    ->label('Image'),
+                Tables\Columns\BadgeColumn::make('status')
+                    ->colors([
+                        'success' => 'current',
+                        'warning' => 'upcoming',
+                        'secondary' => 'past',
+                    ]),
                 Tables\Columns\TextColumn::make('start_date')
-                    ->date()
+                    ->label('Opens')
+                    ->date('M j, Y')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('end_date')
-                    ->date()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('audition_date')
-                    ->date()
+                    ->label('Closes')
+                    ->date('M j, Y')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -163,14 +176,8 @@ class ShowResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                //
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
@@ -181,19 +188,14 @@ class ShowResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
+    public static function getRelations(): array { return []; }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListShows::route('/'),
+            'index'  => Pages\ListShows::route('/'),
             'create' => Pages\CreateShow::route('/create'),
-            'edit' => Pages\EditShow::route('/{record}/edit'),
+            'edit'   => Pages\EditShow::route('/{record}/edit'),
         ];
     }
 }
