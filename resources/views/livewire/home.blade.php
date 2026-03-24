@@ -73,20 +73,74 @@
 
     <!-- What's New Section -->
     @if($this->news->isNotEmpty())
-        <section class="py-12 sm:py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-8 sm:mb-12 text-center">What's New</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <section class="py-12 sm:py-16 bg-gray-50">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="flex items-center justify-center gap-3 mb-8 sm:mb-12">
+                    <div class="h-px flex-1 bg-lime-300 max-w-[80px]"></div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 text-center">What's New at OBCT</h2>
+                    <div class="h-px flex-1 bg-lime-300 max-w-[80px]"></div>
+                </div>
+
+                <div class="flex flex-col gap-6">
                     @foreach($this->news as $item)
-                        <article class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-lime-500 hover:shadow-lg transition">
-                            <h3 class="text-xl font-bold text-gray-800 mb-3">{{ $item->title }}</h3>
-                            <p class="text-gray-600 mb-4">{{ $item->content }}</p>
-                            @if($item->link_url)
-                                <a href="{{ $item->link_url }}"
-                                   class="text-lime-600 font-semibold hover:text-lime-700 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2 rounded">
-                                    {{ $item->link_text ?? 'Read More' }} →
-                                </a>
-                            @endif
+                        <article
+                            x-data="{ expanded: false }"
+                            class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition"
+                        >
+                            {{-- Colored top bar --}}
+                            <div class="h-1.5 bg-gradient-to-r from-lime-400 to-green-500"></div>
+
+                            <div class="p-6 sm:p-8">
+                                {{-- Header row --}}
+                                <div class="flex items-start gap-4 mb-4">
+                                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-lime-100 flex items-center justify-center mt-0.5">
+                                        <svg class="w-5 h-5 text-lime-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 leading-snug">{{ $item->title }}</h3>
+                                </div>
+
+                                {{-- Content with expand/collapse for long text --}}
+                                @php $isLong = strlen($item->content) > 300; @endphp
+
+                                <div class="text-gray-600 leading-relaxed text-sm sm:text-base pl-14">
+                                    @if($isLong)
+                                        <div x-show="!expanded" class="relative">
+                                            <p>{!! nl2br(e(Str::limit($item->content, 280))) !!}</p>
+                                            <div class="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent"></div>
+                                        </div>
+                                        <div x-show="expanded" x-cloak>
+                                            <p>{!! nl2br(e($item->content)) !!}</p>
+                                        </div>
+                                        <button
+                                            @click="expanded = !expanded"
+                                            class="mt-3 text-lime-600 font-semibold text-sm hover:text-lime-700 focus:outline-none focus:ring-2 focus:ring-lime-500 rounded"
+                                        >
+                                            <span x-text="expanded ? '↑ Show less' : '↓ Read full announcement'"></span>
+                                        </button>
+                                    @else
+                                        <p>{!! nl2br(e($item->content)) !!}</p>
+                                    @endif
+                                </div>
+
+                                {{-- Optional link button --}}
+                                @if($item->link_url)
+                                    <div class="mt-5 pl-14">
+                                        <a href="{{ $item->link_url }}"
+                                           target="_blank"
+                                           rel="noopener noreferrer"
+                                           class="inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-400 text-gray-900 font-bold px-5 py-2.5 rounded-lg transition shadow-sm focus:outline-none focus:ring-2 focus:ring-lime-600 focus:ring-offset-2">
+                                            {{ $item->link_text ?? 'Learn More' }}
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                @endif
+                            </div>
                         </article>
                     @endforeach
                 </div>
